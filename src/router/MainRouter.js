@@ -10,6 +10,9 @@ import Admin from './AdminRouter'
 // app
 import AppRoot from './App'
 
+// page
+import { ReactPage } from '../page'
+
 
 class MainRouter extends Component{
 	render(){
@@ -19,8 +22,7 @@ class MainRouter extends Component{
 					<Route path="/" render={()=>
 						<Admin>
 							<Route path="/home" component={Home}/>
-							<Route path="/demo/react/doc" component={Demo}/>
-							<Route path="/demo/react/ret" component={Demo2}/>
+							<Route path="/demo/react" component={ReactPage}/>
 						</Admin>
 					}/>
 				</AppRoot>
@@ -30,7 +32,5 @@ class MainRouter extends Component{
 }
 
 const Home = ()=><div>Home</div>
-const Demo = ()=><div>react-doc</div>
-const Demo2 = ()=><div>react-ret</div>
 
 export default MainRouter

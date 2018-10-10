@@ -9,12 +9,8 @@ const menuList = [
 		key: '/demo',
 		children: [
 			{
-				title: 'react-doc',
-				key: '/demo/react/doc'
-			},
-			{
-				title: 'react-ret',
-				key: '/demo/react/ret'
+				title: 'react',
+				key: '/demo/react'
 			}
 		]
 	}
