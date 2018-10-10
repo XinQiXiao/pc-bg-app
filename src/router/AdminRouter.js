@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import { Row, Col } from 'antd'
 
 // style
-import '../style/common.css'
+import '../style/common.less'
 
 // components
 import { NavLeft } from '../components'
