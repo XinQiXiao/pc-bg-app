@@ -1,0 +1,20 @@
+
+.container {
+	display: flex;
+}
+
+.container .nav-left {
+	height: calc(100vh);
+	background-color: #001529;
+}
+
+.container .main {
+	height: calc(100vh);
+	background-color: #f1f3f5;
+	overflow: auto;
+}
+
+.container .content {
+	position: relative;
+	padding: 20px;
+}
