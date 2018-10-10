@@ -13,3 +13,7 @@
 			1.引入 antd , yarn add antd --save
 			2.创建 AdminRouter 页面通用主路由
 			3. 创建 navLeft 组件
+
+		t0.1.3 
+			1.引入axios less-loader 插件
+			2. 执行 yarn eject 暴露webpack 配置
