@@ -2,7 +2,7 @@
  * create at 10/09/18
  */
 import React, { Component } from 'react'
-import {Route, HashRouter} from 'react-router-dom'
+import {Route, HashRouter, Switch} from 'react-router-dom'
 
 // router
 import Admin from './AdminRouter'
@@ -11,7 +11,10 @@ import Admin from './AdminRouter'
 import AppRoot from './App'
 
 // page
-import { ReactPage } from '../page'
+import { 
+	// Demo
+	ReactPage, LessPage,
+} from '../page'
 
 
 class MainRouter extends Component{
@@ -21,8 +24,13 @@ class MainRouter extends Component{
 				<AppRoot>
 					<Route path="/" render={()=>
 						<Admin>
-							<Route path="/home" component={Home}/>
-							<Route path="/demo/react" component={ReactPage}/>
+							<Switch>
+								{/* Home */}
+								<Route path="/home" component={Home}/>
+								{/* Demo */}
+								<Route path="/demo/react" component={ReactPage}/>
+								<Route path="/demo/less" component={LessPage}/>
+							</Switch>
 						</Admin>
 					}/>
 				</AppRoot>
@@ -32,5 +40,6 @@ class MainRouter extends Component{
 }
 
 const Home = ()=><div>Home</div>
+const Demo = ()=><div>Demo</div>
 
 export default MainRouter

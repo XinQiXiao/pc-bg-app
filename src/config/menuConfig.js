@@ -11,6 +11,10 @@ const menuList = [
 			{
 				title: 'react',
 				key: '/demo/react'
+			},
+			{
+				title: 'less',
+				key: '/demo/less'
 			}
 		]
 	}
