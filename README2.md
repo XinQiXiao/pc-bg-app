@@ -19,5 +19,17 @@
 			2. 执行 yarn eject 暴露webpack 配置
 			3. webpack 配置 配置less
 
-			仿造 css webpack 配置 resource/webpack/less.md
+			仿造 css webpack 配置 resource/webpack/readCopy.md
 				
+		t0.1.4 加载antd 样式
+			1. 引入antd 样式 
+			2. 通过 babel-plugin-import 按需加载 
+				参考链接: https://ant.design/docs/react/getting-started-cn#按需加载
+				webpack 配置 resource/webpack/readCopy.md
+			3. 改变主体颜色
+
+			bugs
+				1. Babel@7+ 后 “Options can't be an array in babel@7+, but you can add plugins with name to support multiple dependencies.”
+				参考 https://github.com/ant-design/babel-plugin-import 相关
+				2. less 报错， 降级 less 到2.7.3 
+					yarn add less@2.7.3

@@ -1,4 +1,7 @@
-{
+##### 
+  webpack 配置补充
+### less loader
+          {
             test: /\.less$/,
             use: [
               require.resolve('style-loader'),
@@ -39,3 +42,6 @@
               },
             ],
           },
+
+####  babel-plugin-load
+['import', {libraryName: 'antd',style: true,}]

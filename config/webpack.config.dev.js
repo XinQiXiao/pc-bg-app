@@ -222,6 +222,10 @@ module.exports = {
                     },
                   },
                 ],
+                ['import', {
+                  libraryName: 'antd',
+                  style: true,
+                }],
               ],
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
@@ -293,7 +297,7 @@ module.exports = {
                 options: {
                   modules: false,
                   modifyVars: {
-                    "@primary-color": "#f9c700"
+                    "@primary-color": "#73b1fa"
                   }
                 }
               },
