@@ -2,6 +2,7 @@
 	branch and tag 
 
 	### 
+		t0.1.* 项目导入篇，基础依赖篇
 		t0.1.0
 			react app create.
 		
@@ -34,6 +35,16 @@
 				2. less 报错， 降级 less 到2.7.3 
 					yarn add less@2.7.3
 
-		t0.1.4 less 练习
+		t0.1.5 less 练习
 			less 概览
 			参考： http://www.css88.com/doc/less/features/
+
+		t0.2.* 几种基础路由页面配置 && antd 组件 && redux navLick 点击
+		
+			t0.2.1 AdminRouter 路由页面构建
+				1. 补充，AdmindRouter 样式，补充缺失 less样式配置
+					a.增加颜色等常量 default.less
+				2.navLeft
+				3.header
+					a.timeUtil 创建  moment库引入
+				4.footer

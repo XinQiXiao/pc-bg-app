@@ -8,6 +8,9 @@ import { Menu, } from 'antd'
 // config
 import { menuList } from '../../config'
 
+// style
+import './left.less'
+
 // const 
 const SubMenu = Menu.SubMenu 
 const MenuItem = Menu.Item
@@ -43,7 +46,11 @@ class LeftComponent extends Component{
 
 	render(){
 		return (
-			<div>
+			<div className="nav-left-view">
+				<div className="menu-title">
+					<img src="/assets/logo-ant.svg" alt="logo-ant"/>
+					<h1>后台系统</h1>
+				</div>
 				<Menu theme="dark">
 					{this.state.menuTreeNode}
 				</Menu>

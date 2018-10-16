@@ -1,0 +1,47 @@
+
+@import '../../style/default.less';
+
+.header-view {
+	background-color: @colorWhiteB;
+	.header-top {
+		height: 60px;
+		line-height: 60px;
+		padding: 0 20px;
+		text-align: right;
+		.logo {
+			line-height: 60px;
+			text-align: left;
+			font-size: 18px;
+			img {
+				height: 40px;
+				vertical-align: middle;
+			}
+			span {
+				margin-left: 10px;
+			}
+		}
+	}
+	.header-breadcrumb {
+		height: 40px;
+		line-height: 40px;
+		padding: 0 20px;
+		border-top: 1px solid @colorYellowA;
+		.breadcrumb-title {
+			text-align: center;
+			font-size: @fontC;
+			&:after {
+				position: absolute;
+				content: '';
+				left: 80px;
+				top: 39px;
+				border-top: 9px solid @colorWhiteB;
+				border-left: 12px solid transparent;
+				border-right: 12px solid transparent;
+			}
+		}
+		.time-view {
+			text-align: right;
+			font-size: 14px;
+		}
+	}
+}

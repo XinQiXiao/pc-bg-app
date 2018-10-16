@@ -8,7 +8,7 @@ import { Row, Col } from 'antd'
 import '../style/common.less'
 
 // components
-import { NavLeft } from '../components'
+import { NavLeft, Header, Footer,} from '../components'
 
 class AdminRouter extends Component{
 	render(){
@@ -18,9 +18,11 @@ class AdminRouter extends Component{
 					<NavLeft />
 				</Col>
 				<Col span={20} className="main">
+					<Header />
 					<Row className="content">
 						{this.props.children}
 					</Row>
+					<Footer />
 				</Col>
 			</Row>
 		)

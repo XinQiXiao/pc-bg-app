@@ -1,20 +1,19 @@
 
+@import './default.less';
+
 .container {
 	display: flex;
-}
-
-.container .nav-left {
-	height: calc(100vh);
-	background-color: #001529;
-}
-
-.container .main {
-	height: calc(100vh);
-	background-color: #f1f3f5;
-	overflow: auto;
-}
-
-.container .content {
-	position: relative;
-	padding: 20px;
+	.nav-left {
+		height: calc(100vh);
+		background-color: @colorBlackA;
+	}
+	.main {
+		height: calc(100vh);
+		background-color: @colorWhiteA;
+		overflow: auto;
+	}
+	.content {
+		position: relative;
+		padding: 20px;
+	}
 }
