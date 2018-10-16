@@ -3,12 +3,17 @@
  */
 import React, { Component } from 'react'
 import {Row, Col,} from 'antd'
+import { connect } from 'react-redux'
 
 // style
 import './header.less'
 
 // util
 import { timeUtil } from '../../utils'
+
+const mapStateToProps = state=>({
+	menuName: state.navMenu.menuName
+})
 
 class HeaderComponent extends Component{
 	state = {
@@ -34,6 +39,7 @@ class HeaderComponent extends Component{
 
 	render(){
 		const {userName, systemTime} = this.state
+		const { menuName } = this.props
 		return (
 			<div className="header-view">
 				<Row className="header-top">
@@ -48,7 +54,7 @@ class HeaderComponent extends Component{
 				</Row>
 				<Row className="header-breadcrumb">
 					<Col span="4" className="breadcrumb-title">
-						<span>首页</span>
+						<span>{menuName}</span>
 					</Col>
 					<Col span="20" className="time-view">
 						<span>{systemTime}</span>
@@ -59,4 +65,4 @@ class HeaderComponent extends Component{
 	}
 }
 
-export default HeaderComponent
+export default connect(mapStateToProps)(HeaderComponent)

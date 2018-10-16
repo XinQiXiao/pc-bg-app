@@ -4,6 +4,11 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Menu, } from 'antd'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+// reducer
+import { switchMenu } from '../../redux/module/navMenuReducer'
 
 // config
 import { menuList } from '../../config'
@@ -15,15 +20,25 @@ import './left.less'
 const SubMenu = Menu.SubMenu 
 const MenuItem = Menu.Item
 
+const mapStateToProps = state => ({
+})
+
+const mapDispatchToProps = (dispatch) => ({
+	myactions: bindActionCreators({switchMenu}, dispatch),
+	dispatch,
+})
+
 class LeftComponent extends Component{
 	state = {
-		menuTreeNode: []
+		menuTreeNode: [],
+		currentKey: ''
 	}
 
 	componentWillMount(){
 		const menuTreeNode = this._renderMenu(menuList)
 		this.setState({
-			menuTreeNode
+			menuTreeNode,
+			currentKey: window.location.hash.replace(/#|\?.*$/g, ''), 
 		})
 	}
 
@@ -44,14 +59,23 @@ class LeftComponent extends Component{
 		})
 	}
 
+	_menuItemClick = ({item, key})=>{
+		let curMenuTitle = (item && item.props && item.props.title) ? item.props.title : ''
+		this.props.myactions.switchMenu({menuName: curMenuTitle})
+		this.setState({
+			currentKey: key,
+		})
+	}
+
 	render(){
+		const {currentKey} = this.state
 		return (
 			<div className="nav-left-view">
 				<div className="menu-title">
 					<img src="/assets/logo-ant.svg" alt="logo-ant"/>
 					<h1>后台系统</h1>
 				</div>
-				<Menu theme="dark">
+				<Menu theme="dark" selectedKeys={[currentKey]} onClick={this._menuItemClick}>
 					{this.state.menuTreeNode}
 				</Menu>
 			</div>
@@ -59,4 +83,4 @@ class LeftComponent extends Component{
 	}
 }
 
-export default LeftComponent
+export default connect(mapStateToProps, mapDispatchToProps)(LeftComponent)

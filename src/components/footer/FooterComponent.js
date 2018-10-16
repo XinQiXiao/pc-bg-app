@@ -2,7 +2,6 @@
  * create at 10/16/18
  */
 import React, { Component } from 'react'
-import {Row, Col,} from 'antd'
 
 // style 
 import './footer.less'

@@ -48,3 +48,9 @@
 				3.header
 					a.timeUtil 创建  moment库引入
 				4.footer
+
+			t0.2.2 Admin Base页面 redux应用
+				1. 导入redux react-redux redux-logger库
+				2. 创建 reducer 创建store 
+				3. root 组件用Provider 组件包装
+				4. navMenu reducer 在NavLeft 和Header组件关联
