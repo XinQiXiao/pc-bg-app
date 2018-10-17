@@ -15,6 +15,8 @@ import AppRoot from './App'
 import { 
 	// Home
 	HomePage,
+	// UI 
+	ButtonPage, ModalPage, LoadingPage, NotificationPage,
 	// Demo
 	ReactPage, LessPage,
 	// Error
@@ -42,6 +44,11 @@ class MainRouter extends Component{
 								<Switch>
 									{/* Home */}
 									<Route path="/home" component={HomePage}/>
+									{/* UI */}
+									<Route path="/ui/buttons" component={ButtonPage}/>
+									<Route path="/ui/modals" component={ModalPage}/>
+									<Route path="/ui/loadings" component={LoadingPage}/>
+									<Route path="/ui/notification" component={NotificationPage}/>
 									{/* Demo */}
 									<Route path="/demo/react" component={ReactPage}/>
 									<Route path="/demo/less" component={LessPage}/>

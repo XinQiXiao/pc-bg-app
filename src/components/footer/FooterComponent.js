@@ -10,7 +10,7 @@ class FooterComponent extends Component{
 	render(){
 		return (
 			<div className="footer-view">
-				版权所有：@** 联系方式：hezuo@test.com
+				版权所有：@** (使用谷歌浏览器体验效果更佳) 联系方式：hezuo@test.com
 			</div>
 		)
 	}
