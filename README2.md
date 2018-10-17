@@ -39,7 +39,7 @@
 			less 概览
 			参考： http://www.css88.com/doc/less/features/
 
-		t0.2.* 几种基础路由页面配置 && antd 组件 && redux navLick 点击
+		t0.2.* 几种基础路由页面配置 && antd 组件 && redux navLick 点击应用
 		
 			t0.2.1 AdminRouter 路由页面构建
 				1. 补充，AdmindRouter 样式，补充缺失 less样式配置
@@ -54,3 +54,8 @@
 				2. 创建 reducer 创建store 
 				3. root 组件用Provider 组件包装
 				4. navMenu reducer 在NavLeft 和Header组件关联
+
+			t0.2.3 commonRouter 补充  mainRouter 完善
+				1.Home Error 页面补充
+				2.CommonRouter 完成 
+				3.MainRouter login

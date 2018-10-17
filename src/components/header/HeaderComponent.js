@@ -39,27 +39,35 @@ class HeaderComponent extends Component{
 
 	render(){
 		const {userName, systemTime} = this.state
-		const { menuName } = this.props
+		const { menuName, routerType = 'admin' } = this.props
 		return (
 			<div className="header-view">
 				<Row className="header-top">
-					<Col span="6" className="logo">
-						<img src="/assets/logo-ant.svg" alt="logo-ant-header"/>
-						<span>后台 通用信息页面</span>
-					</Col>
-					<Col span="18">
+					{
+						routerType === 'common' ? (
+							<Col span="6" className="logo">
+								<img src="/assets/logo-ant.svg" alt="logo-ant-header"/>
+								<span>后台 通用信息页面</span>
+							</Col>
+						) : null
+					}
+					<Col span={routerType === 'common' ? 18 : 24} className="welcome">
 						<span>欢迎，{userName}</span>
 						<a href="javascript:void(0)">退出</a>
 					</Col>
 				</Row>
-				<Row className="header-breadcrumb">
-					<Col span="4" className="breadcrumb-title">
-						<span>{menuName}</span>
-					</Col>
-					<Col span="20" className="time-view">
-						<span>{systemTime}</span>
-					</Col>
-				</Row>
+				{
+					routerType === 'common' ? null : (
+						<Row className="header-breadcrumb">
+							<Col span="4" className="breadcrumb-title">
+								<span>{menuName}</span>
+							</Col>
+							<Col span="20" className="time-view">
+								<span>{systemTime}</span>
+							</Col>
+						</Row>
+					)
+				}
 			</div>
 		)
 	}

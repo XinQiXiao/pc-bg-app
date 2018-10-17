@@ -18,7 +18,7 @@ class AdminRouter extends Component{
 					<NavLeft />
 				</Col>
 				<Col span={20} className="main">
-					<Header />
+					<Header routerType="admin"/>
 					<Row className="content">
 						{this.props.children}
 					</Row>

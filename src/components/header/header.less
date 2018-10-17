@@ -1,7 +1,7 @@
 
 @import '../../style/default.less';
 
-.header-view {
+.header-view{
 	background-color: @colorWhiteB;
 	.header-top {
 		height: 60px;
@@ -18,6 +18,11 @@
 			}
 			span {
 				margin-left: 10px;
+			}
+		}
+		.welcome {
+			a {
+				margin-left: 20px;
 			}
 		}
 	}
@@ -42,6 +47,21 @@
 		.time-view {
 			text-align: right;
 			font-size: 14px;
+		}
+	}
+}
+
+// common router
+.common-router-header{
+	.header-top {
+		background: @colorBlueA;
+		color: @colorWhiteB;
+		.welcome {
+			color: @colorWhiteB;
+			a {
+				color: @colorYellowA;
+				margin-left: 20px;
+			}
 		}
 	}
 }
