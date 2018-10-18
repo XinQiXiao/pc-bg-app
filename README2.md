@@ -60,8 +60,14 @@
 				2.CommonRouter 完成 
 				3.MainRouter login
 
-			t0.2.4 button && modals && Loading
+			t0.2.4 button && modals && Loading && Notification
 				1. Button page
 				2. Modal page
 				3. Loading page
 				4. Notification page
+
+			t0.2.5 message && Tab && gallery && carousel
+				1. message page
+				2. tab page
+				3. 图片画廊
+				4. 轮播图

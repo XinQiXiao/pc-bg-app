@@ -1,3 +1,4 @@
+@import '../../style/default.less';
 
 .ui-card-wrap {
 	margin-bottom: 20px;
@@ -26,4 +27,20 @@
 	vertical-align: middle;
 	top: 0;
 	text-align: left;
+}
+
+// 轮播
+.ant-carousel .slick-slide {
+  text-align: center;
+  height: 160px;
+  line-height: 160px;
+  background: @colorBlueB;
+  overflow: hidden;
+}
+.ant-carousel .slick-slide h3 {
+  color: rgba(246, 250, 33, 0.966);
+}
+// 图片轮播
+.slider-wrap .ant-carousel .slick-slide {
+  height: 240px!important;
 }

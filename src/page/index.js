@@ -6,7 +6,10 @@
 import { HomePage } from './home'
 
 // UI
-import { ButtonPage, ModalPage, LoadingPage, NotificationPage, } from './ui'
+import { 
+	ButtonPage, ModalPage, LoadingPage, NotificationPage, 
+	MessagePage, TabPage, GalleryPage, CarouselPage,
+} from './ui'
 
 // Demo
 import { ReactPage, LessPage, } from './demo'
@@ -19,6 +22,7 @@ export {
 	HomePage,
 	// UI
 	ButtonPage, ModalPage, LoadingPage, NotificationPage,
+	MessagePage, TabPage, GalleryPage, CarouselPage, 
 	// Demo
 	ReactPage, LessPage,
 	// Error

@@ -17,6 +17,7 @@ import {
 	HomePage,
 	// UI 
 	ButtonPage, ModalPage, LoadingPage, NotificationPage,
+	MessagePage, TabPage, GalleryPage, CarouselPage,
 	// Demo
 	ReactPage, LessPage,
 	// Error
@@ -49,6 +50,10 @@ class MainRouter extends Component{
 									<Route path="/ui/modals" component={ModalPage}/>
 									<Route path="/ui/loadings" component={LoadingPage}/>
 									<Route path="/ui/notification" component={NotificationPage}/>
+									<Route path="/ui/messages" component={MessagePage}/>
+									<Route path="/ui/tabs" component={TabPage}/>
+									<Route path="/ui/gallery" component={GalleryPage}/>
+									<Route path="/ui/carousel" component={CarouselPage}/>
 									{/* Demo */}
 									<Route path="/demo/react" component={ReactPage}/>
 									<Route path="/demo/less" component={LessPage}/>
