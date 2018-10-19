@@ -61,13 +61,21 @@
 				3.MainRouter login
 
 			t0.2.4 button && modals && Loading && Notification
+				ui 上
 				1. Button page
 				2. Modal page
 				3. Loading page
 				4. Notification page
 
 			t0.2.5 message && Tab && gallery && carousel
+				ui 下
 				1. message page
 				2. tab page
 				3. 图片画廊
 				4. 轮播图
+
+			t0.2.6 表单
+				Form 表单
+				1. LoginForm page
+				2. RegisterForm page
+					config constants 建立

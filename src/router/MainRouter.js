@@ -18,6 +18,8 @@ import {
 	// UI 
 	ButtonPage, ModalPage, LoadingPage, NotificationPage,
 	MessagePage, TabPage, GalleryPage, CarouselPage,
+	// Form
+	LoginFormPage, RegisterFormPage,
 	// Demo
 	ReactPage, LessPage,
 	// Error
@@ -54,6 +56,9 @@ class MainRouter extends Component{
 									<Route path="/ui/tabs" component={TabPage}/>
 									<Route path="/ui/gallery" component={GalleryPage}/>
 									<Route path="/ui/carousel" component={CarouselPage}/>
+									{/* Form */}
+									<Route path="/form/login" component={LoginFormPage}/>
+									<Route path="/form/reg" component={RegisterFormPage}/>
 									{/* Demo */}
 									<Route path="/demo/react" component={ReactPage}/>
 									<Route path="/demo/less" component={LessPage}/>

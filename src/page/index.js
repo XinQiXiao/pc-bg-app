@@ -11,6 +11,9 @@ import {
 	MessagePage, TabPage, GalleryPage, CarouselPage,
 } from './ui'
 
+// form 
+import { LoginFormPage, RegisterFormPage, } from './form'
+
 // Demo
 import { ReactPage, LessPage, } from './demo'
 
@@ -23,6 +26,8 @@ export {
 	// UI
 	ButtonPage, ModalPage, LoadingPage, NotificationPage,
 	MessagePage, TabPage, GalleryPage, CarouselPage, 
+	// form 
+	LoginFormPage, RegisterFormPage,
 	// Demo
 	ReactPage, LessPage,
 	// Error
