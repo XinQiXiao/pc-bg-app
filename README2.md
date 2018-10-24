@@ -79,3 +79,12 @@
 				1. LoginForm page
 				2. RegisterForm page
 					config constants 建立
+
+			t0.2.7 表格
+				Table 表格
+				t0.2.7.1 表格1 
+				1. 封装axios 
+					导入 axios , yarn add axios
+					public html补充 loading 组件 和其样式 loading.less
+				2. Base Table
+					基础表格-数据mock

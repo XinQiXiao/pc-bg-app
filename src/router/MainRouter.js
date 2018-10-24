@@ -20,6 +20,8 @@ import {
 	MessagePage, TabPage, GalleryPage, CarouselPage,
 	// Form
 	LoginFormPage, RegisterFormPage,
+	// Table
+	BasicTablePage, HighTablePage,
 	// Demo
 	ReactPage, LessPage,
 	// Error
@@ -59,6 +61,9 @@ class MainRouter extends Component{
 									{/* Form */}
 									<Route path="/form/login" component={LoginFormPage}/>
 									<Route path="/form/reg" component={RegisterFormPage}/>
+									{/* Table */}
+									<Route path="/table/basic" component={BasicTablePage}/>
+									<Route path="/table/high" component={HighTablePage}/>
 									{/* Demo */}
 									<Route path="/demo/react" component={ReactPage}/>
 									<Route path="/demo/less" component={LessPage}/>

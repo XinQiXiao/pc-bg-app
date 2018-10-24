@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react'
 import { 
-	Form, Input, Button, Card, Icon, Checkbox, message, Radio, InputNumber, 
+	Form, Input, Button, Card, Icon, Checkbox, Radio, InputNumber, 
 	Select, Switch, DatePicker, TimePicker, Upload,
 } from 'antd'
 import moment from 'moment'

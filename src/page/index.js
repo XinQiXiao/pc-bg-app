@@ -14,6 +14,9 @@ import {
 // form 
 import { LoginFormPage, RegisterFormPage, } from './form'
 
+// table
+import { BasicTablePage, HighTablePage } from './table'
+
 // Demo
 import { ReactPage, LessPage, } from './demo'
 
@@ -28,6 +31,8 @@ export {
 	MessagePage, TabPage, GalleryPage, CarouselPage, 
 	// form 
 	LoginFormPage, RegisterFormPage,
+	// table
+	BasicTablePage, HighTablePage,
 	// Demo
 	ReactPage, LessPage,
 	// Error
