@@ -88,3 +88,15 @@
 					public html补充 loading 组件 和其样式 loading.less
 				2. Base Table
 					基础表格-数据mock
+				t0.2.7.2 表格2
+				3. Base Table
+					表格单选
+					表格复选
+					表格分页
+						tableUtil 添加
+				4. High Table
+					头部固定
+					左侧固定
+					排序
+					操作
+				5. axios catch 捕获

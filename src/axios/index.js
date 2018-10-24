@@ -10,9 +10,8 @@ const baseApi = 'https://www.easy-mock.com/mock/5b6aeb1ca40bfb27425bbaee/mockapi
 class Axios{
 	static ajax(options){
 		// 展示 页面 loading
-		let loading 
+		let loading = document.getElementById('ajaxLoading')
 		if(options.data && options.data.isShowLoading !== false){
-			loading = document.getElementById('ajaxLoading')
 			loading.style.display = 'block'
 		}
 		if(options.isMock){
@@ -26,12 +25,11 @@ class Axios{
 				url: options.url,
 				method: options.method || 'get',
 				baseURL: baseApi,
-				timeout: 30*1000,
+				timeout: 10*1000,
 				params: (options.data && options.data.params) || '',
 			}).then((response)=>{
 				// 页面 loading 关闭
 				if(options.data && options.data.isShowLoading !== false){
-					loading = document.getElementById('ajaxLoading')
 					loading.style.display = 'none'
 				}
 				// 打印请求日志
@@ -49,6 +47,13 @@ class Axios{
 				} else {
 					reject(response.data)
 				}
+			}).catch((e)=>{
+				console.log('axios e=>', e)
+				loading.style.display = 'none'
+				Modal.error({
+					title: '提示',
+					content: e.message,
+				})
 			})
 		})
 	}
