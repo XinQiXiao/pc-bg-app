@@ -3,8 +3,10 @@
  */
 import menuList from './menuConfig'
 import * as consConfig from './constants'
+import echartTheme from './echartTheme'
 
 export {
 	menuList,
 	consConfig,
+	echartTheme,
 }

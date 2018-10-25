@@ -24,6 +24,8 @@ import {
 	BasicTablePage, HighTablePage,
 	// Rich 
 	RichPage,
+	// Chart
+	BarChartPage, PieChartPage, LineChartPage,
 	// Demo
 	ReactPage, LessPage,
 	// Error
@@ -68,6 +70,10 @@ class MainRouter extends Component{
 									<Route path="/table/high" component={HighTablePage}/>
 									{/* Rich */}
 									<Route path="/rich" component={RichPage}/>
+									{/* Chart */}
+									<Route path="/charts/bar" component={BarChartPage}/>
+									<Route path="/charts/pie" component={PieChartPage}/>
+									<Route path="/charts/line" component={LineChartPage}/>
 									{/* Demo */}
 									<Route path="/demo/react" component={ReactPage}/>
 									<Route path="/demo/less" component={LessPage}/>

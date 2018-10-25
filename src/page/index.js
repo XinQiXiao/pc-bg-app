@@ -20,6 +20,9 @@ import { BasicTablePage, HighTablePage } from './table'
 // rich
 import { RichPage } from './rich'
 
+// chart
+import { BarChartPage, PieChartPage, LineChartPage } from './chart'
+
 // Demo
 import { ReactPage, LessPage, } from './demo'
 
@@ -38,6 +41,8 @@ export {
 	BasicTablePage, HighTablePage,
 	// rich 
 	RichPage,
+	// chart
+	BarChartPage, PieChartPage, LineChartPage,
 	// Demo
 	ReactPage, LessPage,
 	// Error

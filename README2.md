@@ -106,3 +106,10 @@
 				1. MainRouter 里增加 Redirect 设置，未定义路由跳回home 页面
 				2. 富文本 
 					引入依赖库 react-draft-wysiwyg draftjs-to-html
+
+			t0.2.9 图表
+				1. 安装插件 echarts-for-react echarts
+					添加echarts 主题 echartTheme
+				2. 柱状图
+				3. 饼状图
+				4. 折线图
