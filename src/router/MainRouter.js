@@ -2,7 +2,7 @@
  * create at 10/09/18
  */
 import React, { Component } from 'react'
-import {Route, HashRouter, Switch} from 'react-router-dom'
+import {Route, HashRouter, Switch, Redirect} from 'react-router-dom'
 
 // router
 import Admin from './AdminRouter'
@@ -22,6 +22,8 @@ import {
 	LoginFormPage, RegisterFormPage,
 	// Table
 	BasicTablePage, HighTablePage,
+	// Rich 
+	RichPage,
 	// Demo
 	ReactPage, LessPage,
 	// Error
@@ -64,9 +66,12 @@ class MainRouter extends Component{
 									{/* Table */}
 									<Route path="/table/basic" component={BasicTablePage}/>
 									<Route path="/table/high" component={HighTablePage}/>
+									{/* Rich */}
+									<Route path="/rich" component={RichPage}/>
 									{/* Demo */}
 									<Route path="/demo/react" component={ReactPage}/>
 									<Route path="/demo/less" component={LessPage}/>
+									<Redirect to="/home"/>
 									<Route component={ErrorPage}/>
 								</Switch>
 							</Admin>

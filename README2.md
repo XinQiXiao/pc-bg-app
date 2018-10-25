@@ -39,7 +39,8 @@
 			less 概览
 			参考： http://www.css88.com/doc/less/features/
 
-		t0.2.* 几种基础路由页面配置 && antd 组件 && redux navLick 点击应用
+		t0.2.* 组件篇
+			几种基础路由页面配置 && antd 组件 && redux navLick 点击应用
 		
 			t0.2.1 AdminRouter 路由页面构建
 				1. 补充，AdmindRouter 样式，补充缺失 less样式配置
@@ -100,3 +101,8 @@
 					排序
 					操作
 				5. axios catch 捕获
+			
+			t0.2.8 富文本
+				1. MainRouter 里增加 Redirect 设置，未定义路由跳回home 页面
+				2. 富文本 
+					引入依赖库 react-draft-wysiwyg draftjs-to-html

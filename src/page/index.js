@@ -17,6 +17,9 @@ import { LoginFormPage, RegisterFormPage, } from './form'
 // table
 import { BasicTablePage, HighTablePage } from './table'
 
+// rich
+import { RichPage } from './rich'
+
 // Demo
 import { ReactPage, LessPage, } from './demo'
 
@@ -33,6 +36,8 @@ export {
 	LoginFormPage, RegisterFormPage,
 	// table
 	BasicTablePage, HighTablePage,
+	// rich 
+	RichPage,
 	// Demo
 	ReactPage, LessPage,
 	// Error
