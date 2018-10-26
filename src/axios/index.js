@@ -25,7 +25,7 @@ class Axios{
 				url: options.url,
 				method: options.method || 'get',
 				baseURL: baseApi,
-				timeout: 10*1000,
+				timeout: 20*1000,
 				params: (options.data && options.data.params) || '',
 			}).then((response)=>{
 				// 页面 loading 关闭

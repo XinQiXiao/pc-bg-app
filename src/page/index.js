@@ -23,6 +23,9 @@ import { RichPage } from './rich'
 // chart
 import { BarChartPage, PieChartPage, LineChartPage } from './chart'
 
+// city
+import { CityPage } from './city'
+
 // Demo
 import { ReactPage, LessPage, } from './demo'
 
@@ -43,6 +46,8 @@ export {
 	RichPage,
 	// chart
 	BarChartPage, PieChartPage, LineChartPage,
+	// city 
+	CityPage,
 	// Demo
 	ReactPage, LessPage,
 	// Error

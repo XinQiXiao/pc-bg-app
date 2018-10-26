@@ -26,6 +26,8 @@ import {
 	RichPage,
 	// Chart
 	BarChartPage, PieChartPage, LineChartPage,
+	// City 
+	CityPage,
 	// Demo
 	ReactPage, LessPage,
 	// Error
@@ -74,6 +76,8 @@ class MainRouter extends Component{
 									<Route path="/charts/bar" component={BarChartPage}/>
 									<Route path="/charts/pie" component={PieChartPage}/>
 									<Route path="/charts/line" component={LineChartPage}/>
+									{/* City */}
+									<Route path="/city" component={CityPage}/>
 									{/* Demo */}
 									<Route path="/demo/react" component={ReactPage}/>
 									<Route path="/demo/less" component={LessPage}/>
