@@ -127,3 +127,10 @@
 				1.通用 FilterForm 
 					引入 react props 检查库 prop-types
 					城市管理 cityPage 中应用 FilterForm
+
+			t0.3.2.2 项目工程化2
+				1. 通用 CommonTable
+					城市管理 cityPage 中应用 CommonTable
+				  onchange && onRow区别
+						onRow： onClick  点击行
+						onchange 点击复选框列（一列）

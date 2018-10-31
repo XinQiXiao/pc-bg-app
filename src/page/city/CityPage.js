@@ -6,7 +6,7 @@ import { Card, Button, Table, Modal, message, notification,} from 'antd'
 import _ from 'lodash'
 
 // components
-import { FilterForm } from '../../components'
+import { FilterForm, CommonTable, } from '../../components'
 import { OpenFormComponent, } from './components'
 
 // axios
@@ -157,18 +157,8 @@ class CityPage extends Component{
 	render(){
 		const cityColumns = _.cloneDeep(cityColumnsConst)
 		const { 
-			dataSource, pagination, selectedRowKeys, modalType, modalShow, selectedRows,
+			dataSource, pagination, modalType, modalShow, selectedRowKeys, selectedRows,
 		} = this.state
-		const rowCheckSelection = {
-			type: 'checkbox',
-			selectedRowKeys,
-			onChange: (selectedRowKeys, selectedRows)=>{
-				this.setState({
-					selectedRowKeys,
-					selectedRows
-				})
-			}
-		}
 		const curModalTitle = modalType === MOPEN ? '开通城市' : '下线城市'
 		const cityNames = selectedRows.map((item)=> item.name).join(', ')
 		return (
@@ -192,14 +182,20 @@ class CityPage extends Component{
 					<Button type="danger" onClick={()=> this._btnClick(MCLOSE)} style={{marginLeft: 10}}>下线城市</Button>
 				</Card>
 				<div className="content-wrap">
-					<Table 
-						bordered
+					<CommonTable 
 						columns={cityColumns}
 						dataSource={dataSource}
 						pagination={pagination}
-						rowKey={record => record.id}
 						scroll={{x: this.colWidth}}
-						rowSelection={rowCheckSelection}
+						rowSelection='checkbox'
+						selectedRowKeys={selectedRowKeys}
+						selectedRows={selectedRows}
+						updateSelectedItem={(selectedRowKeys, selectedRows)=>{
+							this.setState({
+								selectedRowKeys, 
+								selectedRows,
+							})
+						}}
 					/>
 				</div>
 				<Modal 

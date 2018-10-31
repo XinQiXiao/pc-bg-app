@@ -5,10 +5,12 @@ import { NavLeft } from './navLeft'
 import { Header, } from './header'
 import { Footer } from './footer'
 import { FilterForm } from './filterForm'
+import { CommonTable } from './commonTable'
 
 export {
 	Header,
 	NavLeft,
 	Footer,
 	FilterForm,
+	CommonTable,
 }
