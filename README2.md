@@ -123,4 +123,7 @@
 						调整表格通用样式 (class-common.less)content-wrap
 					b.开通城市，删除城市
 				3.头部筛选
-			t0.3.2.项目工程化
+			t0.3.2.1 项目工程化
+				1.通用 FilterForm 
+					引入 react props 检查库 prop-types
+					城市管理 cityPage 中应用 FilterForm

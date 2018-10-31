@@ -6,7 +6,8 @@ import { Card, Button, Table, Modal, message, notification,} from 'antd'
 import _ from 'lodash'
 
 // components
-import { OpenFormComponent, FilterFormComponent, } from './components'
+import { FilterForm } from '../../components'
+import { OpenFormComponent, } from './components'
 
 // axios
 import axiosPai from '../../axios'
@@ -14,9 +15,15 @@ import axiosPai from '../../axios'
 // util
 import { tableUtil } from '../../utils'
 
+// config
+import { consConfig, } from '../../config'
+
 // const 
-import { cityColumnsConst } from './constants'
+import { 
+	cityColumnsConst, citysConst, modeConst, optionsModeConst, authStatusConst, 
+} from './constants'
 const { tablePagination, calculateTableWidth } = tableUtil
+const { formFilterType, formBtnType } = consConfig
 
 const MOPEN = 'modal_open'
 const MCLOSE = 'modal_close'
@@ -72,25 +79,15 @@ class CityPage extends Component{
 		}
 	}
 
-	_searchClick = ()=>{
+	_searchClick = ({code, formValues})=>{
 		try{
-			const {getFieldsValue, } = this.filterForm.props.form 
-			const req = getFieldsValue()
 			notification.info({
 				message: '筛选内容',
-				description: `city=${req.city} mode=${req.mode} 
-				op_mode=${req.op_mode} auth_status=${req.auth_status}`
+				description: `city=${formValues.city} mode=${formValues.mode} 
+				op_mode=${formValues.op_mode} auth_status=${formValues.auth_status}`
 			})
 		}catch(e){
 			console.log('_searchClick e=>', e)
-		}
-	}
-	_resetClick = ()=>{
-		try{
-			const {resetFields} = this.filterForm.props.form
-			resetFields()
-		}catch(e){
-			console.log('_resetClick e=>', e)
 		}
 	}
 
@@ -107,7 +104,7 @@ class CityPage extends Component{
 		})
 	}
 	_modalConfirm = async ()=>{
-		const {modalType, selectedRowKeys} = this.state
+		const {modalType} = this.state
 		this.setState({
 			modalShow: false
 		})
@@ -177,10 +174,17 @@ class CityPage extends Component{
 		return (
 			<div>
 				<Card>
-					<FilterFormComponent 
-						searchPress={this._searchClick}
-						resetPress={this._resetClick}
-						wrappedComponentRef={(form)=> this.filterForm = form}
+					<FilterForm 
+						formList={[
+							{type: formFilterType.SELECT, field: 'city', label: '城市', initialValue: citysConst[0].id,list: citysConst,},
+							{type: formFilterType.SELECT, field: 'mode', label: '用车模式', initialValue: modeConst[0].id, list: modeConst, itemStyle: {marginLeft: 10}, innerStyle: {width: 160}},
+							{type: formFilterType.SELECT, field: 'op_mode', label: '运营模式', initialValue: optionsModeConst[0].id, list: optionsModeConst, itemStyle: {marginLeft: 10},},
+							{type: formFilterType.SELECT, field: 'auth_status', label: '加盟商授权状态', initialValue: authStatusConst[0].id, list: authStatusConst, itemStyle: {marginLeft: 10},},
+						]}
+						options={[
+							{btnType: 'primary',type: formBtnType.QUERY,optionItemPress: this._searchClick,style: {marginLeft: 20},title: '查询'},
+							{type: formBtnType.RESET,optionItemPress: ()=> null,style: {marginLeft: 20},title: '重置'},
+						]}
 					/>
 				</Card>
 				<Card style={{marginTop: 10}}>
