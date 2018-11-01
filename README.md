@@ -35,14 +35,16 @@
   
 
 # 安装调试
-  // clone
+、、、
+  # clone
   git clone https://github.com/XinQiXiao/pc-bg-app.git
-  // install
+  # install
   npm install || yarn install
-  // dev
+  # dev
   yarn start || npm start 即可
-  // build
+  # build
   yarn run build || npm run build
+、、、
 
 # 核心组件库
 * react
