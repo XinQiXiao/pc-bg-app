@@ -93,25 +93,6 @@ const optionsMode = [
 	}
 ]
 
-const citys = [
-	{
-		id: 0,
-		name: '全部'
-	},
-	{
-		id: 1,
-		name: '北京'
-	},
-	{
-		id: 2,
-		name: '上海'
-	},
-	{
-		id: 3,
-		name: '广州'
-	}
-]
-
 const authStatus = [
 	{
 		id: 0,
@@ -129,7 +110,6 @@ const authStatus = [
 
 export {
 	cityColumnsConst,
-	citys as citysConst,
 	mode as modeConst,
 	optionsMode as optionsModeConst,
 	authStatus as authStatusConst,

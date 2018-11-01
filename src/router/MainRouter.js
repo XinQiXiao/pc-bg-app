@@ -28,6 +28,8 @@ import {
 	BarChartPage, PieChartPage, LineChartPage,
 	// City 
 	CityPage,
+	// Bike
+	BikeMapPage,
 	// Demo
 	ReactPage, LessPage,
 	// Error
@@ -78,6 +80,8 @@ class MainRouter extends Component{
 									<Route path="/charts/line" component={LineChartPage}/>
 									{/* City */}
 									<Route path="/city" component={CityPage}/>
+									{/* Bike */}
+									<Route path="/bikeMap" component={BikeMapPage}/>
 									{/* Demo */}
 									<Route path="/demo/react" component={ReactPage}/>
 									<Route path="/demo/less" component={LessPage}/>

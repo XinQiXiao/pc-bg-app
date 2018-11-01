@@ -5,7 +5,10 @@ import React, { Component } from 'react'
 import { Form, Select, } from 'antd'
 
 // const 
-import { citysConst, modeConst, optionsModeConst, } from './constants'
+import { modeConst, optionsModeConst, } from './constants'
+import { consConfig } from '../../config'
+
+const { citysConst } = consConfig
 
 const FormItem = Form.Item
 const SelectOption = Select.Option

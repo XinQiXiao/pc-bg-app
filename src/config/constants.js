@@ -27,6 +27,43 @@ const interestCons = [
 ]
 
 /**
+ * 城市
+ */
+const citys = [
+	{
+		id: 0,
+		name: '全部'
+	},
+	{
+		id: 1,
+		name: '北京'
+	},
+	{
+		id: 2,
+		name: '上海'
+	},
+	{
+		id: 3,
+		name: '广州'
+	}
+]
+
+const orderStatus = [
+	{
+		id: 0,
+		name: '全部',
+	},
+	{
+		id: 1,
+		name: '进行中',
+	},
+	{
+		id: 2,
+		name: '行程结束',
+	},
+]
+
+/**
  * 表单 类型
  * 现支持类型有 Select/Input/CheckBox/(自定义)QueryTime
  */
@@ -50,6 +87,8 @@ const formBtnType = {
 export {
 	stateCons,
 	interestCons,
+	citys as citysConst,
+	orderStatus as orderStatusConst,
 	formFilterType,
 	formBtnType,
 }

@@ -87,6 +87,10 @@ FilterForm.defaultProps = {
 }
 const FilterFormComponent = Form.create()(FilterForm)
 
+/**
+ * type 是 formBtnType 类型
+ * code 相同type类型，区分每个 输入预留的字段
+ */
 class OptionBtn extends Component{
 	_btnClick = ()=>{
 		const { btnPress, code, type } = this.props
@@ -106,8 +110,8 @@ class OptionBtn extends Component{
 
 const FilterItem = (props)=>{
 	const {
-		type, field, label, placeholder, initialValue = '', 
-		itemStyle, innerStyle, list = [], rules = [],
+		type, field, label, placeholder='', initialValue = '', 
+		itemStyle = null, innerStyle = null, list = [], rules = [],
 	} = props
 	const { getFieldDecorator } = props.form
 	switch(type){

@@ -26,6 +26,9 @@ import { BarChartPage, PieChartPage, LineChartPage } from './chart'
 // city
 import { CityPage } from './city'
 
+// bike 
+import { BikeMapPage } from './bike'
+
 // Demo
 import { ReactPage, LessPage, } from './demo'
 
@@ -48,6 +51,8 @@ export {
 	BarChartPage, PieChartPage, LineChartPage,
 	// city 
 	CityPage,
+	// bike 
+	BikeMapPage,
 	// Demo
 	ReactPage, LessPage,
 	// Error

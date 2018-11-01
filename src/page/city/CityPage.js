@@ -2,7 +2,7 @@
  * create at 10/26/18
  */
 import React, { Component } from 'react'
-import { Card, Button, Table, Modal, message, notification,} from 'antd'
+import { Card, Button, Modal, message, notification,} from 'antd'
 import _ from 'lodash'
 
 // components
@@ -20,13 +20,49 @@ import { consConfig, } from '../../config'
 
 // const 
 import { 
-	cityColumnsConst, citysConst, modeConst, optionsModeConst, authStatusConst, 
+	cityColumnsConst, modeConst, optionsModeConst, authStatusConst, 
 } from './constants'
+
 const { tablePagination, calculateTableWidth } = tableUtil
-const { formFilterType, formBtnType } = consConfig
+const { formFilterType, formBtnType, citysConst } = consConfig
 
 const MOPEN = 'modal_open'
 const MCLOSE = 'modal_close'
+
+const FORM_LIST = [
+	{
+		type: formFilterType.SELECT, 
+		field: 'city', 
+		label: '城市', 
+		initialValue: citysConst[0].id,
+		list: citysConst,
+	},
+	{
+		type: formFilterType.SELECT, 
+		field: 'mode', 
+		label: '用车模式', 
+		initialValue: modeConst[0].id, 
+		list: modeConst, 
+		itemStyle: {marginLeft: 10}, 
+		innerStyle: {width: 160}
+	},
+	{
+		type: formFilterType.SELECT, 
+		field: 'op_mode', 
+		label: '运营模式', 
+		initialValue: optionsModeConst[0].id, 
+		list: optionsModeConst, 
+		itemStyle: {marginLeft: 10},
+	},
+	{
+		type: formFilterType.SELECT, 
+		field: 'auth_status', 
+		label: '加盟商授权状态', 
+		initialValue: authStatusConst[0].id, 
+		list: authStatusConst, 
+		itemStyle: {marginLeft: 10},
+	},
+]
 
 class CityPage extends Component{
 	state = {
@@ -86,6 +122,8 @@ class CityPage extends Component{
 				description: `city=${formValues.city} mode=${formValues.mode} 
 				op_mode=${formValues.op_mode} auth_status=${formValues.auth_status}`
 			})
+			// 刷新
+			this._requestList()
 		}catch(e){
 			console.log('_searchClick e=>', e)
 		}
@@ -165,15 +203,24 @@ class CityPage extends Component{
 			<div>
 				<Card>
 					<FilterForm 
-						formList={[
-							{type: formFilterType.SELECT, field: 'city', label: '城市', initialValue: citysConst[0].id,list: citysConst,},
-							{type: formFilterType.SELECT, field: 'mode', label: '用车模式', initialValue: modeConst[0].id, list: modeConst, itemStyle: {marginLeft: 10}, innerStyle: {width: 160}},
-							{type: formFilterType.SELECT, field: 'op_mode', label: '运营模式', initialValue: optionsModeConst[0].id, list: optionsModeConst, itemStyle: {marginLeft: 10},},
-							{type: formFilterType.SELECT, field: 'auth_status', label: '加盟商授权状态', initialValue: authStatusConst[0].id, list: authStatusConst, itemStyle: {marginLeft: 10},},
-						]}
+						formList={FORM_LIST}
 						options={[
-							{btnType: 'primary',type: formBtnType.QUERY,optionItemPress: this._searchClick,style: {marginLeft: 20},title: '查询'},
-							{type: formBtnType.RESET,optionItemPress: ()=> null,style: {marginLeft: 20},title: '重置'},
+							{
+								btnType: 'primary',
+								type: formBtnType.QUERY,
+								optionItemPress: this._searchClick,
+								style: {marginLeft: 20},
+								title: '查询'
+							},
+							{
+								type: formBtnType.RESET,
+								optionItemPress: ()=> {
+									// 刷新
+									this._requestList()
+								},
+								style: {marginLeft: 20},
+								title: '重置'
+							},
 						]}
 					/>
 				</Card>
