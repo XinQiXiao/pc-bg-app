@@ -19,19 +19,19 @@
 
 # 主要功能
 * 基础功能
-  *UI (antd)
-  *表单 (antd Form)
-  *表格 (antd Table)
-  *富文本 
-  *图表 (echarts)
-  *demo
+  * UI (antd)
+  * 表单 (antd Form)
+  * 表格 (antd Table)
+  * 富文本 
+  * 图表 (echarts)
+  * demo
 * 业务功能
-  *首页
-  *权限设置
-  *城市管理
-  *订单管理
-  *员工管理
-  *车辆地图
+  * 首页
+  * 权限设置
+  * 城市管理
+  * 订单管理
+  * 员工管理
+  * 车辆地图
   
 
 # 安装调试
@@ -63,14 +63,14 @@
     一步步搭建项目 可参考 README2
 
 # 参考 
-  react中文网 https://react.docschina.org
-  antd-design 中文文档 https://ant.design/docs/react/introduce-cn
-  easy-mock https://www.easy-mock.com
-  less 文档 http://www.css88.com/doc/less/features/
-  axios https://github.com/axios/axios
-  echarts http://echarts.baidu.com
-  百度地图开放平台 javaScript api http://lbsyun.baidu.com/index.php?title=jspopular
-  react-draft-wysiwyg https://github.com/jpuri/react-draft-wysiwyg
+  * react中文网 https://react.docschina.org
+  * antd-design 中文文档 https://ant.design/docs/react/introduce-cn
+  * easy-mock https://www.easy-mock.com
+  * less 文档 http://www.css88.com/doc/less/features/
+  * axios https://github.com/axios/axios
+  * echarts http://echarts.baidu.com
+  * 百度地图开放平台 javaScript api http://lbsyun.baidu.com/index.php?title=jspopular
+  * react-draft-wysiwyg https://github.com/jpuri/react-draft-wysiwyg
 
 # License
 
