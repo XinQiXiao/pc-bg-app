@@ -26,25 +26,23 @@
   * 图表 (echarts)
   * demo
 * 业务功能
-  * 首页
-  * 权限设置
+  * 首页 (TODO)
+  * 权限设置 (TODO)
   * 城市管理
-  * 订单管理
-  * 员工管理
+  * 订单管理 (TODO)
+  * 员工管理 (TODO)
   * 车辆地图
   
 
 # 安装调试
-、、、
-  # clone
+  ## clone
   git clone https://github.com/XinQiXiao/pc-bg-app.git
-  # install
+  ## install
   npm install || yarn install
-  # dev
+  ## dev
   yarn start || npm start 即可
-  # build
+  ## build
   yarn run build || npm run build
-、、、
 
 # 核心组件库
 * react
