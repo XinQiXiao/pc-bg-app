@@ -29,6 +29,9 @@ import { CityPage } from './city'
 // bike 
 import { BikeMapPage } from './bike'
 
+// user
+import { UserListPage } from './user'
+
 // Demo
 import { ReactPage, LessPage, } from './demo'
 
@@ -53,6 +56,8 @@ export {
 	CityPage,
 	// bike 
 	BikeMapPage,
+	// user
+	UserListPage,
 	// Demo
 	ReactPage, LessPage,
 	// Error

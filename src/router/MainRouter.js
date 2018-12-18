@@ -30,6 +30,8 @@ import {
 	CityPage,
 	// Bike
 	BikeMapPage,
+	// user
+	UserListPage,
 	// Demo
 	ReactPage, LessPage,
 	// Error
@@ -82,6 +84,8 @@ class MainRouter extends Component{
 									<Route path="/city" component={CityPage}/>
 									{/* Bike */}
 									<Route path="/bikeMap" component={BikeMapPage}/>
+									{/* User */}
+									<Route path="/user" component={UserListPage}/>
 									{/* Demo */}
 									<Route path="/demo/react" component={ReactPage}/>
 									<Route path="/demo/less" component={LessPage}/>

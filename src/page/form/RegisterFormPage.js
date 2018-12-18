@@ -101,8 +101,8 @@ class RegisterFormPage extends Component{
 									initialValue: '1'
 								})(
 									<RadioGroup>
-										<Radio value="1">男</Radio>
-										<Radio value="2">女</Radio>
+										<Radio value={consConfig.sexCons[0].id}>{consConfig.sexCons[0].name}</Radio>
+										<Radio value={consConfig.sexCons[1].id}>{consConfig.sexCons[1].name}</Radio>
 									</RadioGroup>
 								)
 							}

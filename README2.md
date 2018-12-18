@@ -152,3 +152,12 @@
 							添加车辆和起始点图标
 						c.绘制服务区
 						d.绘制车辆分布情况
+
+			t0.3.4 员工管理
+				1. 页面搭建
+				2.filterForm 使用
+				3. commonTable 使用
+				4. handle modal 组件（TODO）[编辑、详情、移除]
+					a.创建员工
+
+			t0.3.5 测试本地 pc-bg-api

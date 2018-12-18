@@ -10,7 +10,8 @@ const stateCons = [
 	'风华浪子',
 	'北大才子一枚',
 	'百度FE',
-	'创业者'
+	'创业者',
+	'职场老手'
 ]
 /**
  * 兴趣爱好
@@ -24,6 +25,24 @@ const interestCons = [
 	'骑行',
 	'桌球',
 	'麦霸',
+	'宅',
+]
+
+/**
+ * 性别
+ */
+const sexCons = [
+	{id: 1, name: '男'},
+	{id: 2, name: '女'},
+	{id: 0, name: '未知'},
+]
+
+/**
+ * 婚否
+ */
+const marryCons = [
+	{id: 0, name: '未婚'},
+	{id: 1, name: '已婚'},
 ]
 
 /**
@@ -87,6 +106,8 @@ const formBtnType = {
 export {
 	stateCons,
 	interestCons,
+	sexCons,
+	marryCons,
 	citys as citysConst,
 	orderStatus as orderStatusConst,
 	formFilterType,

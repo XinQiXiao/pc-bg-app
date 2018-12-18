@@ -10,7 +10,7 @@ import { FilterForm, CommonTable, } from '../../components'
 import { OpenFormComponent, } from './components'
 
 // axios
-import axiosPai from '../../axios'
+import axiosApi from '../../axios'
 
 // util
 import { tableUtil } from '../../utils'
@@ -89,7 +89,7 @@ class CityPage extends Component{
 	_requestList = async ()=>{
 		try{
 			let _this = this
-			const ret = await axiosPai.ajax({
+			const ret = await axiosApi.ajax({
 				url: 'city/list',
 				data: {
 					params: {
@@ -158,7 +158,7 @@ class CityPage extends Component{
 		try{
 			const { getFieldsValue } = this.openForm.props.form
 			const req = getFieldsValue()
-			const ret = await axiosPai.ajax({
+			const ret = await axiosApi.ajax({
 				url: 'city/open',
 				data: {
 					params: {
@@ -176,7 +176,7 @@ class CityPage extends Component{
 	_requestClose = async ()=>{
 		try{
 			const { selectedRowKeys } = this.state
-			const ret = await axiosPai.ajax({
+			const ret = await axiosApi.ajax({
 				url: 'city/close',
 				data: {
 					params: {

@@ -1,7 +1,14 @@
 /**
  * create at 10/24/18
  */
-
+/**
+ * 性别
+ */
+// const sexCons = [
+// 	{id: 1, name: '男'},
+// 	{id: 2, name: '女'},
+// 	{id: 0, name: '未知'},
+// ]
 // 性别转换
 function transformSex(num){
 	let reSex = '未知'
@@ -18,9 +25,16 @@ function transformSex(num){
 	return reSex
 }
 
+// /**
+//  * 婚否
+//  */
+// const marryCons = [
+// 	{id: 0, name: '未婚'},
+// 	{id: 1, name: '已婚'},
+// ]
 // 婚否转换
 function transformMarry(num){
-	let reMarry = '未知'
+	let reMarry = '未婚'
 	switch(num){
 		case 0:
 			reMarry = '未婚'
