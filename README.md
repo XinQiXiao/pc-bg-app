@@ -10,6 +10,8 @@
 * [配置补充](#配置补充)
 * [参考](#参考)
 
+- [各版本说明文档](README_BT.md)
+
 # 演示预览
   在线地址：
 
@@ -71,6 +73,11 @@
   * echarts http://echarts.baidu.com
   * 百度地图开放平台 javaScript api http://lbsyun.baidu.com/index.php?title=jspopular
   * react-draft-wysiwyg https://github.com/jpuri/react-draft-wysiwyg
+
+# 福利
+  最近完成了一个基于 node express server api 项目
+  地址：https://github.com/XinQiXiao/pc-bg-api.git
+  感兴趣的大家可以参考
 
 # License
 

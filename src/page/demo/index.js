@@ -3,8 +3,10 @@
  */
 import { ReactPage } from './reactDemo'
 import { LessPage } from './lessDemo'
+import { ApiPage } from './apiDemo'
 
 export {
 	ReactPage,
 	LessPage,
+	ApiPage,
 }

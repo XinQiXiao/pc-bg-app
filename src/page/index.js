@@ -33,7 +33,7 @@ import { BikeMapPage } from './bike'
 import { UserListPage } from './user'
 
 // Demo
-import { ReactPage, LessPage, } from './demo'
+import { ReactPage, LessPage, ApiPage, } from './demo'
 
 // Error
 import { ErrorPage, } from './error'
@@ -59,7 +59,7 @@ export {
 	// user
 	UserListPage,
 	// Demo
-	ReactPage, LessPage,
+	ReactPage, LessPage, ApiPage,
 	// Error
 	ErrorPage,
 }

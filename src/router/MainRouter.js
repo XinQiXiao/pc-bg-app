@@ -33,7 +33,7 @@ import {
 	// user
 	UserListPage,
 	// Demo
-	ReactPage, LessPage,
+	ReactPage, LessPage, ApiPage,
 	// Error
 	ErrorPage,
 } from '../page'
@@ -89,6 +89,7 @@ class MainRouter extends Component{
 									{/* Demo */}
 									<Route path="/demo/react" component={ReactPage}/>
 									<Route path="/demo/less" component={LessPage}/>
+									<Route path="/demo/api" component={ApiPage}/>
 									<Redirect to="/home"/>
 									<Route component={ErrorPage}/>
 								</Switch>

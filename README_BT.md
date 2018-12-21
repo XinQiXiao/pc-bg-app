@@ -161,3 +161,6 @@
 					a.创建员工
 
 			t0.3.5 测试本地 pc-bg-api
+				页面 ApiDemo
+				axios baseUrlType 参数增加
+					增加headers 参数, 增加 body, (post 请求跨域问题)

@@ -5,10 +5,13 @@ import axios from 'axios'
 import { Modal } from 'antd'
 
 // const 
-const baseApi = 'https://www.easy-mock.com/mock/5b6aeb1ca40bfb27425bbaee/mockapi'
+const easyMockAPi = 'https://www.easy-mock.com/mock/5b6aeb1ca40bfb27425bbaee/mockapi'
+const localApi = 'http://localhost:8095/pc_api/pc'
 
 class Axios{
 	static ajax(options){
+		// baseUrlType <number> 0 easy mock 1 localhost
+		const { baseUrlType = 0 } = options
 		// 展示 页面 loading
 		let loading = document.getElementById('ajaxLoading')
 		if(options.data && options.data.isShowLoading !== false){
@@ -20,13 +23,16 @@ class Axios{
 		// 打印 params
 		console.log(`axios request url=${options.url}`)
 		console.log('axios request data=>', options.data)
+		console.log('axios request body=>', options.body)
 		return new Promise((resolve, reject)=>{
 			axios({
 				url: options.url,
 				method: options.method || 'get',
-				baseURL: baseApi,
+				baseURL: baseUrlType === 0 ? easyMockAPi : localApi,
 				timeout: 20*1000,
 				params: (options.data && options.data.params) || '',
+				headers: {'content-type': 'application/x-www-form-urlencoded'},
+				data: options.body || {}
 			}).then((response)=>{
 				// 页面 loading 关闭
 				if(options.data && options.data.isShowLoading !== false){
