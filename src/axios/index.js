@@ -40,19 +40,21 @@ class Axios{
 				}
 				// 打印请求日志
 				console.log('axios ajax response=>', response)
-				if(response.status === 200){
-					const res = response.data
-					if(res.code === 0){
-						resolve(res.data)
-					} else {
-						Modal.error({
-							title: '提示',
-							content: res.msg,
-						})
-					}
-				} else {
+				if(response.status !== 200)
 					reject(response.data)
-				}
+				const res = response.data
+				if(res.code === 0)
+					return resolve(res.data)
+				let codeStr = res.code.toString()
+				let errTitle = ''
+				if(/^4/.test(codeStr))
+					errTitle = '请求参数错误'
+				if(/^5/.test(codeStr))
+					errTitle = '服务器错误'
+				Modal.error({
+					title: errTitle,
+					content: `code=${codeStr} errMsg=${res.msg || res.message}`
+				})
 			}).catch((e)=>{
 				console.log('axios e=>', e)
 				loading.style.display = 'none'

@@ -5,7 +5,7 @@
 const categoryColumnsConst = [
 	{
 		title: '类别ID',
-		dataIndex: 'category_id',
+		dataIndex: 'id',
 		width: 60,
 	},
 	{
@@ -24,7 +24,7 @@ const bookColumnConst = [
 	{
 		title: 'ID',
 		dataIndex: 'id',
-		width: 120,
+		width: 140,
 	},
 	{
 		title: '名称',
@@ -57,7 +57,7 @@ const bookColumnConst = [
 	{
 		title: '出版社',
 		dataIndex: 'press',
-		width: 140,
+		width: 180,
 	},
 	{
 		title: '出版时间',
