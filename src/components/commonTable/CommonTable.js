@@ -31,7 +31,9 @@ class TableComponent extends Component{
 
 	render(){
 		const {
-			columns, dataSource, pagination, rowSelection, selectedRowKeys, scroll, updateSelectedItem,
+			columns, dataSource, pagination, rowSelection, 
+			selectedRowKeys, scroll, updateSelectedItem,
+			recordKey = 'unique',
 		} = this.props
 		const defaultSection = {
 			type: RADIO,
@@ -55,7 +57,7 @@ class TableComponent extends Component{
 				pagination={pagination}
 				scroll={scroll}
 				rowSelection={initSection}
-				rowKey={record => record.id}
+				rowKey={record => record.id || record[recordKey]}
 				onRow={(record)=>{
 					return {
 						onClick: ()=>{

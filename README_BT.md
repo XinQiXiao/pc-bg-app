@@ -164,3 +164,8 @@
 				页面 ApiDemo
 				axios baseUrlType 参数增加
 					增加headers 参数, 增加 body, (post 请求跨域问题)
+
+			t0.3.6 测试 api 用例完善
+				1.获取图书种类列表列表
+				2. bug 兼容 table dataSource 数据里没有id 情况 警告 [Each record in table should have a unique `key` prop,or set `rowKey` to an unique primary key.]
+				3.获取图书信息列表

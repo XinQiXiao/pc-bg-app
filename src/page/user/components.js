@@ -3,7 +3,6 @@
  */
 import React, { Component } from 'react'
 import { Form, Input, Radio, Select, Switch, DatePicker, } from 'antd'
-import _ from 'lodash'
 import moment from 'moment'
 
 // config
