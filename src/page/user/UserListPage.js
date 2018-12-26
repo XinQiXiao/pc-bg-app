@@ -12,8 +12,8 @@ import { UserFormComponent } from './components'
 // config
 import { consConfig } from '../../config'
 
-// axios
-import axiosApi from '../../axios'
+// presenter
+import { userPresenters } from '../../presenter'
 
 // util
 import { tableUtil } from '../../utils'
@@ -25,6 +25,8 @@ const CREATE = 'handle_create'
 const EDIT = 'handle_edit'
 const INFO = 'handle_info'
 const REMOVE = 'handle_remove'
+
+const { fetchUserList, fetchUserEdit, } = userPresenters
 
 const { formFilterType, formBtnType, } = consConfig
 const { tablePagination, calculateTableWidth } = tableUtil
@@ -91,13 +93,7 @@ class UserListComponent extends Component{
 
 	_requestList = async ()=>{
 		try{
-			const ret = await axiosApi.ajax({
-				url: 'user/list',
-				data: {
-					prams: this.params,
-					isShowLoading: true
-				}
-			})
+			const ret = await fetchUserList({params: this.params})
 			let _this = this 
 			this.setState({
 				userList: _.isArray(ret.list) ? ret.list : [],
@@ -169,15 +165,7 @@ class UserListComponent extends Component{
 					type === REMOVE ? 'user/remove' : ''
 				)
 			)
-			const ret = await axiosApi.ajax({
-				url: curUrl,
-				data: {
-					params: {
-						...req,
-					},
-					isShowLoading: true,
-				}
-			})
+			const ret = await fetchUserEdit({params: req, url: curUrl})
 			message.success(`${ret.result ? ret.result : ''}`)
 		}catch(e){
 			message.error(`e={e.message}`)

@@ -8,8 +8,8 @@ import _ from 'lodash'
 // components
 import { CommonTable } from '../../../components'
 
-// axios
-import axiosApi from '../../../axios'
+// presenter
+import { bookPresenters } from '../../../presenter'
 
 // util
 import { tableUtil } from '../../../utils'
@@ -17,6 +17,7 @@ import { tableUtil } from '../../../utils'
 // const 
 import { categoryColumnsConst, bookColumnConst, } from './constants'
 const { calculateTableWidth, } = tableUtil
+const { fetchCategoryAll, fetchbookAll, } = bookPresenters
 
 const ADD = 'options_add'
 const EDIT = 'options_edit'
@@ -45,24 +46,7 @@ class ApiContainer extends Component{
 	_requestData = async ()=>{
 		try{
 			const rets = await Promise.all([
-				axiosApi.ajax({
-					url: 'book/getBookCategorys',
-					baseUrlType: 1,
-					method: 'POST',
-					body: {},
-					data: {
-						isShowLoading: true,
-					}
-				}),
-				axiosApi.ajax({
-					url: 'book/getAllBookInfo',
-					baseUrlType: 1,
-					method: 'POST',
-					body: {},
-					data: {
-						isShowLoading: true,
-					}
-				})
+				fetchCategoryAll({body: {}}), fetchbookAll({body: {}})
 			])
 			if(!_.isArray(rets))
 				throw new Error('获取数据失败')
@@ -77,6 +61,13 @@ class ApiContainer extends Component{
 			})
 		}catch(e){
 			message.error(`获取数据fail err=${e.message}`)
+		}
+	}
+	_requestBooksList = async ()=>{
+		try{
+			// const ret 
+		}catch(e){
+			message.error(`获取图书列表数据fail err=${e.message}`)
 		}
 	}
 

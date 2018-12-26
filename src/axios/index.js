@@ -1,34 +1,27 @@
 /**
  * create at 10/23/18
+ * 处理 axios 
+ * 处理失败提示
  */
 import axios from 'axios'
 import { Modal } from 'antd'
 
-// const 
-const easyMockAPi = 'https://www.easy-mock.com/mock/5b6aeb1ca40bfb27425bbaee/mockapi'
-const localApi = 'http://localhost:8095/pc_api/pc'
-
 class Axios{
 	static ajax(options){
-		// baseUrlType <number> 0 easy mock 1 localhost
-		const { baseUrlType = 0 } = options
 		// 展示 页面 loading
 		let loading = document.getElementById('ajaxLoading')
 		if(options.data && options.data.isShowLoading !== false){
 			loading.style.display = 'block'
 		}
-		if(options.isMock){
-			// 是mock数据，还是正式数据
-		}
 		// 打印 params
-		console.log(`axios request url=${options.url}`)
+		console.log(`axios request url=${options.baseURL+options.url}`)
 		console.log('axios request data=>', options.data)
 		console.log('axios request body=>', options.body)
 		return new Promise((resolve, reject)=>{
 			axios({
 				url: options.url,
 				method: options.method || 'get',
-				baseURL: baseUrlType === 0 ? easyMockAPi : localApi,
+				baseURL: options.baseURL,
 				timeout: 20*1000,
 				params: (options.data && options.data.params) || '',
 				headers: {'content-type': 'application/x-www-form-urlencoded'},
@@ -56,7 +49,6 @@ class Axios{
 					content: `code=${codeStr} errMsg=${res.msg || res.message}`
 				})
 			}).catch((e)=>{
-				console.log('axios e=>', e)
 				loading.style.display = 'none'
 				Modal.error({
 					title: '提示',

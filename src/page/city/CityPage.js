@@ -9,8 +9,8 @@ import _ from 'lodash'
 import { FilterForm, CommonTable, } from '../../components'
 import { OpenFormComponent, } from './components'
 
-// axios
-import axiosApi from '../../axios'
+// presenter
+import { cityPresenters } from '../../presenter'
 
 // util
 import { tableUtil } from '../../utils'
@@ -22,6 +22,8 @@ import { consConfig, } from '../../config'
 import { 
 	cityColumnsConst, modeConst, optionsModeConst, authStatusConst, 
 } from './constants'
+
+const { fetchCityList, fetchCityOpen, fetchCityClose } = cityPresenters
 
 const { tablePagination, calculateTableWidth } = tableUtil
 const { formFilterType, formBtnType, citysConst } = consConfig
@@ -89,15 +91,7 @@ class CityPage extends Component{
 	_requestList = async ()=>{
 		try{
 			let _this = this
-			const ret = await axiosApi.ajax({
-				url: 'city/list',
-				data: {
-					params: {
-						...this.params
-					},
-					isShowLoading: true,
-				}
-			})
+			const ret = await fetchCityList({params: this.params})
 			if(ret && _.isArray(ret.list)){
 				this.setState({
 					dataSource: ret.list,
@@ -158,36 +152,18 @@ class CityPage extends Component{
 		try{
 			const { getFieldsValue } = this.openForm.props.form
 			const req = getFieldsValue()
-			const ret = await axiosApi.ajax({
-				url: 'city/open',
-				data: {
-					params: {
-						...req,
-					},
-					isShowLoading: true,
-				}
-			})
+			const ret = await fetchCityOpen({params: req})
 			message.success(`${ret.result ? ret.result : ''}`)
 		}catch(e){
-			console.log('_requestOpen e=>', e)
 			message.error(`开通城市 err${e.message ? e.message : '未知'}`)
 		}
 	}
 	_requestClose = async ()=>{
 		try{
 			const { selectedRowKeys } = this.state
-			const ret = await axiosApi.ajax({
-				url: 'city/close',
-				data: {
-					params: {
-						ids: selectedRowKeys
-					},
-					isShowLoading: true
-				}
-			})
+			const ret = await fetchCityClose({params: {ids: selectedRowKeys}})
 			message.success(`${ret.result ? ret.result : ''}`)
 		}catch(e){
-			console.log('_requestClose e=>', e)
 			message.error(`下线城市 err${e.message ? e.message : '未知'}`)
 		}
 	}

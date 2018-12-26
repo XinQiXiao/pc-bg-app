@@ -8,13 +8,14 @@ import _ from 'lodash'
 // components
 import { FilterForm } from '../../components'
 
-// axios
-import axiosPai from '../../axios'
+// presenter
+import {bikePresenters} from '../../presenter'
 
 // config
 import { consConfig } from '../../config'
 
-// const 
+// const
+const { fetchBikeList } = bikePresenters 
 const { formFilterType, formBtnType, citysConst, orderStatusConst, } = consConfig
 
 const FORM_LIST = [
@@ -56,15 +57,7 @@ class BikeMapComponent extends Component{
 
 	_requestData = async ()=>{
 		try{
-			const ret = await axiosPai.ajax({
-				url: 'map/bikeList',
-				data: {
-					params: {
-						...this.params
-					},
-					isShowLoading: true,
-				}
-			})
+			const ret = await fetchBikeList({params: this.params})
 			this.setState({
 				bikeData: ret
 			})

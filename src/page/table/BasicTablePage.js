@@ -5,14 +5,15 @@ import React, { Component } from 'react'
 import { Card, Modal, Table, Button, message} from 'antd'
 import _ from 'lodash'
 
-// axios
-import axiosApi from '../../axios'
+// presenter
+import { commonPresenters } from '../../presenter'
 // constants
 import { columnsConst } from './constants'
 // util
 import { tableUtil } from '../../utils'
 
 // const 
+const { fetchTableList } = commonPresenters
 const { tablePagination } = tableUtil
 
 class BasicPage extends Component{
@@ -34,15 +35,7 @@ class BasicPage extends Component{
 	_requestList = async ()=>{
 		try{
 			let _this = this
-			const ret = await axiosApi.ajax({
-				url: 'table/list', 
-				data: {
-					params: {
-						...this.params, 
-					},
-					isShowLoading: true,
-				}
-			})
+			const ret = await fetchTableList({params: this.params})
 			this.setState({
 				dataSource: _.isArray(ret.list) ? ret.list : [],
 				selectedRowKeys: [],

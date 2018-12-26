@@ -174,6 +174,10 @@
 				1. axios res.code 4xx 错误 5xx错误提示优化
 				2.修复 antd design 彩蛋问题
 					https://github.com/ant-design/ant-design/issues/13848
-				3.book info 增删改
+				3. 增加 globalConfig 配置
+				4. 增加 presenter 解耦页面请求设置 axios
+					处理现有页面 axios 
+				5.book info 增删改
 					增加图书功能，修改图书功能，删除图书信息功能
 					a. 增加图书 Modal 
+				

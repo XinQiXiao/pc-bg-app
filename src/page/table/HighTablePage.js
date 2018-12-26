@@ -5,12 +5,15 @@ import React, { Component } from 'react'
 import { Card, Table, Modal, } from 'antd'
 import _ from 'lodash'
 
-// axios
-import axiosApi from '../../axios'
+// presenter
+import { commonPresenters } from '../../presenter'
 // constants
 import { columnsConst, columnsLongConst, columnsSortConst, columnsHandleConst, } from './constants'
 // util
 import { tableUtil } from '../../utils'
+
+// const 
+const { fetchTableHightList } = commonPresenters
 
 class HighPage extends Component{
 	state = {
@@ -25,15 +28,7 @@ class HighPage extends Component{
 
 	_requestList = async ()=>{
 		try{
-			const ret = await axiosApi.ajax({
-				url: 'table/high/list', 
-				data: {
-					params: {
-						page: 1, 
-					},
-					isShowLoading: true,
-				}
-			})
+			const ret = await fetchTableHightList({params: {page: 1}})
 			this.setState({
 				dataSource: _.isArray(ret.list) ? ret.list : [],
 			})
