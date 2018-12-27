@@ -62,7 +62,7 @@
     node(8.0以上，原因是antd 需要8.0以上)
 
   * 补充
-    一步步搭建项目 可参考 README_BT
+    一步步搭建项目 可参考 README_BT.md
 
 # 参考 
   * react中文网 https://react.docschina.org
