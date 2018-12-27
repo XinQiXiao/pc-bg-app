@@ -170,7 +170,7 @@
 				2. bug 兼容 table dataSource 数据里没有id 情况 警告 [Each record in table should have a unique `key` prop,or set `rowKey` to an unique primary key.]
 				3.获取图书信息列表
 
-			t0.3.7 api 功能测试
+			t0.3.7 api 功能测试（图书信息表的增删改查， 配合pc-bg-api）
 				1. axios res.code 4xx 错误 5xx错误提示优化
 				2.修复 antd design 彩蛋问题
 					https://github.com/ant-design/ant-design/issues/13848
@@ -180,4 +180,6 @@
 				5.book info 增删改
 					增加图书功能，修改图书功能，删除图书信息功能
 					a. 增加图书 Modal 
+						数字控件 InputNumber
+						axios headers 参数设置
 				

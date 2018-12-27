@@ -24,8 +24,13 @@ class Axios{
 				baseURL: options.baseURL,
 				timeout: 20*1000,
 				params: (options.data && options.data.params) || '',
-				headers: {'content-type': 'application/x-www-form-urlencoded'},
-				data: options.body || {}
+				headers: {
+					'content-type': 'application/json',
+					// 'content-type': 'application/x-www-form-urlencoded',
+				},
+				data: {
+					...options.body,
+				}
 			}).then((response)=>{
 				// 页面 loading 关闭
 				if(options.data && options.data.isShowLoading !== false){

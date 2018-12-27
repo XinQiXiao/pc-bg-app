@@ -4,9 +4,11 @@
 import React, { Component } from 'react'
 import { Card, message, Button, Modal, } from 'antd'
 import _ from 'lodash'
+import moment from 'moment'
 
 // components
 import { CommonTable } from '../../../components'
+import { BookForm } from './components'
 
 // presenter
 import { bookPresenters } from '../../../presenter'
@@ -16,8 +18,10 @@ import { tableUtil } from '../../../utils'
 
 // const 
 import { categoryColumnsConst, bookColumnConst, } from './constants'
+import { fetchAddBook } from '../../../presenter/bookPresenter'
+
 const { calculateTableWidth, } = tableUtil
-const { fetchCategoryAll, fetchbookAll, } = bookPresenters
+const { fetchCategoryAll, fetchChildrenCategorys, fetchbookAll, } = bookPresenters
 
 const ADD = 'options_add'
 const EDIT = 'options_edit'
@@ -38,6 +42,9 @@ class ApiContainer extends Component{
 	bookColWidth = calculateTableWidth(bookColumnConst)
 	categoryModalTitle = ''
 	bookModalTitle = ''
+	childrenCategorys = []
+	bookForm = ''
+	bookEditType = ''
 
 	componentDidMount(){
 		this._requestData()
@@ -46,11 +53,14 @@ class ApiContainer extends Component{
 	_requestData = async ()=>{
 		try{
 			const rets = await Promise.all([
-				fetchCategoryAll({body: {}}), fetchbookAll({body: {}})
+				fetchCategoryAll({body: {}}), 
+				fetchbookAll({body: {}}),
+				fetchChildrenCategorys({body: {}})
 			])
 			if(!_.isArray(rets))
 				throw new Error('获取数据失败')
 			// 获取数据  重置一些状态
+			this.childrenCategorys = rets[2]
 			this.setState({
 				categorysSource: rets[0],
 				booksSource: rets[1],
@@ -65,9 +75,18 @@ class ApiContainer extends Component{
 	}
 	_requestBooksList = async ()=>{
 		try{
-			// const ret 
+			const ret = await fetchbookAll({body: {}})
+			if(!_.isArray(ret))
+				throw new Error('bookList 数据格式不正确')
+			this.setState({
+				booksSource: ret, 
+				bookRowkeys: [],
+				bookRows: [],
+			})
+			return true
 		}catch(e){
 			message.error(`获取图书列表数据fail err=${e.message}`)
+			return false
 		}
 	}
 
@@ -110,6 +129,7 @@ class ApiContainer extends Component{
 			return
 		}
 		this.bookModalTitle = type === ADD ? `创建图书信息` : `编辑图书信息`
+		this.bookEditType = type
 		this.setState({
 			bookModal: true
 		})
@@ -127,14 +147,50 @@ class ApiContainer extends Component{
 	}
 
 	_bookModalOK = ()=>{
+		const {validateFields, resetFields} = this.bookForm.props.form
+		validateFields((err, values)=>{
+			if(!err){
+				// 请求数据
+				const newValues = _.cloneDeep(values) 
+				const {pubdate} = newValues
+				newValues.pubdate = !_.isNil(pubdate) ? moment(pubdate).format('YYYY-MM-DD') : moment().format('YYYY-MM-DD')
+				
+				const retBool = this._bookEditRequest({data: newValues, type: this.bookEditType})
+				if(!retBool)
+					return  
+				this.setState({
+					bookModal: false
+				})
+				// book edit type 置为默认
+				this.bookEditType = ''
+				// form clear
+				resetFields()
+				// 刷新book list
+				this._requestBooksList()
+			}
+		})
+	}
+	_bookModalCancel = ()=>{
+		const {resetFields} = this.bookForm.props.form
+		// form clear
+		resetFields()
 		this.setState({
 			bookModal: false
 		})
 	}
-	_bookModalCancel = ()=>{
-		this.setState({
-			bookModal: false
-		})
+	_bookEditRequest = async ({data, type})=>{
+		try{
+			const ret = await fetchAddBook({body: {...data}})
+			
+			if(!_.isNil(ret)){
+				let title = type === ADD ? '添加' : '修改'
+				message.success(`${title}图书成功`)
+			}
+			return true
+		}catch(e){
+			message.error(`操作失败 err=${e.message}`)
+			return false
+		}
 	}
 
 	render(){
@@ -215,6 +271,9 @@ class ApiContainer extends Component{
 					onOk={this._bookModalOK}
 					onCancel={this._bookModalCancel}
 				>
+					<BookForm bookCategorys={this.childrenCategorys} 
+						wrappedComponentRef={(form)=> this.bookForm = form}
+					/>
 				</Modal>
 			</div>
 		)

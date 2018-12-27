@@ -21,6 +21,24 @@ async function fetchCategoryAll({body}){
 		throw e
 	}
 }
+// 获取所有图书子类别
+async function fetchChildrenCategorys({body}){
+	try{
+		let curOption = {
+			url: 'book/getBookChildrenCategorys',
+			isMock: false,
+			method: 'POST',
+			body,
+			data: {
+				isShowLoading: true,
+			}
+		}
+		const ret = await requestRemoteData({options: curOption})
+		return ret
+	}catch(e){
+		throw e
+	}
+}
 
 // 获取所有图书
 async function fetchbookAll({body}){
@@ -41,7 +59,28 @@ async function fetchbookAll({body}){
 	}
 }
 
+// 添加图书
+async function fetchAddBook({body}){
+	try{
+		let curOption = {
+			url: 'book/addBook',
+			isMock: false,
+			method: 'POST',
+			body,
+			data: {
+				isShowLoading: true,
+			}
+		}
+		const ret = await requestRemoteData({options: curOption})
+		return ret
+	}catch(e){
+		throw e
+	}
+}
+
 export {
 	fetchCategoryAll,
+	fetchChildrenCategorys,
 	fetchbookAll,
+	fetchAddBook,
 }
