@@ -45,7 +45,7 @@ class HeaderComponent extends Component{
 				<Row className="header-top">
 					{
 						routerType === 'common' ? (
-							<Col span="6" className="logo">
+							<Col span={6} className="logo">
 								<img src="/assets/logo-ant.svg" alt="logo-ant-header"/>
 								<span>后台 通用信息页面</span>
 							</Col>
@@ -59,10 +59,10 @@ class HeaderComponent extends Component{
 				{
 					routerType === 'common' ? null : (
 						<Row className="header-breadcrumb">
-							<Col span="4" className="breadcrumb-title">
+							<Col span={4} className="breadcrumb-title">
 								<span>{menuName}</span>
 							</Col>
-							<Col span="20" className="time-view">
+							<Col span={20} className="time-view">
 								<span>{systemTime}</span>
 							</Col>
 						</Row>

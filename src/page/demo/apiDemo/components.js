@@ -3,6 +3,7 @@
  */
 import React, { Component } from 'react'
 import { Form, Input, Select, InputNumber, DatePicker, } from 'antd'
+import moment from 'moment'
 
 // const
 const FormItem = Form.Item
@@ -10,7 +11,7 @@ const SelectOption = Select.Option
 
 class BookFormBase extends Component{
 	render(){
-		const {bookCategorys} = this.props
+		const {bookCategorys, formData} = this.props
 		const {getFieldDecorator} = this.props.form
 		const formItemLayout = {
 			labelCol: {
@@ -34,7 +35,8 @@ class BookFormBase extends Component{
 									max: 30,
 									message: '书名不能超过30个字符'
 								}
-							]
+							],
+							initialValue: (formData && formData.book_name) ? formData.book_name : ''
 						})(
 							<Input placeholder="请输入书名"/>
 						)
@@ -52,7 +54,8 @@ class BookFormBase extends Component{
 									max: 20,
 									message: '作者不能超过20个字符'
 								}
-							]
+							],
+							initialValue: (formData && formData.author) ? formData.author : ''
 						})(
 							<Input placeholder="请输入作者"/>
 						)
@@ -61,7 +64,7 @@ class BookFormBase extends Component{
 				<FormItem label="书类别" {...formItemLayout}>
 					{
 						getFieldDecorator('book_category_id', {
-							initialValue: bookCategorys[0].id,
+							initialValue: (formData && formData.book_category && formData.book_category.category_id) ? formData.book_category.category_id : bookCategorys[0].id,
 						})(
 							<Select>
 								{
@@ -81,7 +84,8 @@ class BookFormBase extends Component{
 									required: true,
 									message: '单价不能为空'
 								}
-							]
+							],
+							initialValue: (formData && formData.price) ? formData.price : ''
 						})(
 							<InputNumber placeholder="单价" min={0} step={10} precision={2}/>
 						)
@@ -99,7 +103,8 @@ class BookFormBase extends Component{
 									max: 30,
 									message: '作者不能超过30个字符'
 								}
-							]
+							],
+							initialValue: (formData && formData.press) ? formData.press : ''
 						})(
 							<Input placeholder="请输入出版社"/>
 						)
@@ -113,7 +118,8 @@ class BookFormBase extends Component{
 									required: true,
 									message: '出版时间不能为空'
 								}
-							]
+							],
+							initialValue: (formData && formData.pubdate) ? moment(formData.pubdate) : moment()
 						})(
 							<DatePicker showToday format="YYYY-MM-DD "/>
 						)
@@ -127,7 +133,8 @@ class BookFormBase extends Component{
 									required: true,
 									message: '库存不能为空'
 								}
-							]
+							],
+							initialValue: (formData && formData.store) ? formData.store : ''
 						})(
 							<InputNumber placeholder="库存" min={1} step={1} precision={0}/>
 						)

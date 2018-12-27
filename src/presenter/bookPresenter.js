@@ -78,9 +78,29 @@ async function fetchAddBook({body}){
 	}
 }
 
+// 修改图书信息
+async function fetchUpdateBook({body}){
+	try{
+		let curOption = {
+			url: 'book/modifyBookInfo',
+			isMock: false,
+			method: 'POST',
+			body,
+			data: {
+				isShowLoading: true,
+			}
+		}
+		const ret = await requestRemoteData({options: curOption})
+		return ret
+	}catch(e){
+		throw e
+	}
+}
+
 export {
 	fetchCategoryAll,
 	fetchChildrenCategorys,
 	fetchbookAll,
 	fetchAddBook,
+	fetchUpdateBook,
 }

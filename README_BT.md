@@ -182,4 +182,6 @@
 					a. 增加图书 Modal 
 						数字控件 InputNumber
 						axios headers 参数设置
+					b. 修改 图书信息 
+						modal bookForm兼容
 				

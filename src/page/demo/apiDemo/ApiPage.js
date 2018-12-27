@@ -21,7 +21,7 @@ import { categoryColumnsConst, bookColumnConst, } from './constants'
 import { fetchAddBook } from '../../../presenter/bookPresenter'
 
 const { calculateTableWidth, } = tableUtil
-const { fetchCategoryAll, fetchChildrenCategorys, fetchbookAll, } = bookPresenters
+const { fetchCategoryAll, fetchChildrenCategorys, fetchbookAll, fetchUpdateBook, } = bookPresenters
 
 const ADD = 'options_add'
 const EDIT = 'options_edit'
@@ -180,12 +180,24 @@ class ApiContainer extends Component{
 	}
 	_bookEditRequest = async ({data, type})=>{
 		try{
-			const ret = await fetchAddBook({body: {...data}})
-			
-			if(!_.isNil(ret)){
-				let title = type === ADD ? '添加' : '修改'
-				message.success(`${title}图书成功`)
+			if(type === ADD){
+				const ret = await fetchAddBook({body: {...data}})
+				if(_.isNil(ret)){
+					throw new Error('添加图书 获取请求结果失败')
+				}
+				message.success(`添加图书成功`)
+				return true
 			}
+			const { bookRowkeys } = this.state
+			let updateBody = {
+				...data,
+				book_id: _.isArray(bookRowkeys) && bookRowkeys.length >0 ? bookRowkeys[0] : null
+			}
+			const retUpdate = await fetchUpdateBook({body: updateBody})
+			if(_.isNil(retUpdate)){
+				throw new Error('修改图书 获取请求结果失败')
+			}
+			message.success(`修改图书信息成功`)
 			return true
 		}catch(e){
 			message.error(`操作失败 err=${e.message}`)
@@ -219,7 +231,6 @@ class ApiContainer extends Component{
 						columns={categoryColumns}
 						dataSource={categorysSource}
 						scroll={{x:this.categoryColWidth, y:300}}
-						pagination={null}
 						rowSelection='radio'
 						selectedRowKeys={categoryRowKeys}
 						selectedRows={categoryRows}
@@ -272,6 +283,7 @@ class ApiContainer extends Component{
 					onCancel={this._bookModalCancel}
 				>
 					<BookForm bookCategorys={this.childrenCategorys} 
+						formData={(this.bookEditType === EDIT && bookRows.length > 0) ? bookRows[0] : null}
 						wrappedComponentRef={(form)=> this.bookForm = form}
 					/>
 				</Modal>
