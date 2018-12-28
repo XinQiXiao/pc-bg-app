@@ -1,5 +1,5 @@
 /**
- * create at 12/18/18
+ * create at 12/28/18
  */
 import React, { Component } from 'react'
 import { Card, message, Button, Modal, } from 'antd'
@@ -17,13 +17,12 @@ import { bookPresenters } from '../../../presenter'
 import { tableUtil } from '../../../utils'
 
 // const 
-import { categoryColumnsConst, bookColumnConst, } from './constants'
-import { fetchAddBook } from '../../../presenter/bookPresenter'
+import { columnConst, } from './constants'
 
 const { calculateTableWidth, } = tableUtil
 const { 
-	fetchCategoryAll, fetchChildrenCategorys, fetchbookAll, 
-	fetchUpdateBook, fetchRemoveBook,
+	fetchChildrenCategorys, fetchbookAll, fetchAddBook,
+	fetchUpdateBook, fetchRemoveBook, 
 } = bookPresenters
 
 const ADD = 'options_add'
@@ -32,22 +31,16 @@ const DELETE = 'options_delete'
 
 class ApiContainer extends Component{
 	state = {
-		categorysSource: [],
 		booksSource: [],
-		categoryRowKeys: [],
-		categoryRows: [],
 		bookRowkeys: [],
 		bookRows: [],
-		categoryModal: false,
-		bookModal: false
+		showModal: false
 	}
-	categoryColWidth = calculateTableWidth(categoryColumnsConst)
-	bookColWidth = calculateTableWidth(bookColumnConst)
-	categoryModalTitle = ''
-	bookModalTitle = ''
+	colWidth = calculateTableWidth(columnConst)
+	modalTitle = ''
 	childrenCategorys = []
 	bookForm = ''
-	bookEditType = ''
+	editType = ''
 
 	componentDidMount(){
 		this._requestData()
@@ -56,63 +49,23 @@ class ApiContainer extends Component{
 	_requestData = async ()=>{
 		try{
 			const rets = await Promise.all([
-				fetchCategoryAll({body: {}}), 
 				fetchbookAll({body: {}}),
 				fetchChildrenCategorys({body: {}})
 			])
 			if(!_.isArray(rets))
 				throw new Error('获取数据失败')
 			// 获取数据  重置一些状态
-			this.childrenCategorys = rets[2]
+			this.childrenCategorys = rets[1]
 			this.setState({
-				categorysSource: rets[0],
-				booksSource: rets[1],
-				categoryRowKeys: [],
-				categoryRows: [],
-				bookRowkeys: [],
-				bookRows: [],
-			})
-		}catch(e){
-			message.error(`获取数据fail err=${e.message}`)
-		}
-	}
-	_requestBooksList = async ()=>{
-		try{
-			const ret = await fetchbookAll({body: {}})
-			if(!_.isArray(ret))
-				throw new Error('bookList 数据格式不正确')
-			this.setState({
-				booksSource: ret, 
+				booksSource: rets[0],
 				bookRowkeys: [],
 				bookRows: [],
 			})
 			return true
 		}catch(e){
-			message.error(`获取图书列表数据fail err=${e.message}`)
+			message.error(`获取数据fail err=${e.message}`)
 			return false
 		}
-	}
-
-	_categoryEdit = (type)=>{
-		const { categoryRowKeys } = this.state
-		if(type !== ADD && categoryRowKeys.length <= 0){
-			message.warn(`请至少选择一条类别信息进行编辑`)
-			return
-		}
-		// 处理删除
-		if(type === DELETE){
-			Modal.confirm({
-				title: '提示',
-				content: '确定删除类别信息',
-				onCancel: ()=> null,
-				onOk: ()=> null
-			})
-			return
-		}
-		this.categoryModalTitle = type === ADD ? `创建类别` : `编辑类别信息`
-		this.setState({
-			categoryModal: true
-		})
 	}
 
 	_bookEdit = (type)=>{
@@ -132,59 +85,50 @@ class ApiContainer extends Component{
 			})
 			return
 		}
-		this.bookModalTitle = type === ADD ? `创建图书信息` : `编辑图书信息`
-		this.bookEditType = type
+		this.modalTitle = type === ADD ? `创建图书信息` : `编辑图书信息`
+		this.editType = type
 		this.setState({
-			bookModal: true
+			showModal: true
 		})
 	}
 
-	_categoryModalOk = ()=>{
-		this.setState({
-			categoryModal: false
-		})
-	}
-	_categoryModalCancel = ()=>{
-		this.setState({
-			categoryModal: false
-		})
-	}
-
-	_bookModalOK = ()=>{
+	_modalOK = ()=>{
 		const {validateFields, resetFields} = this.bookForm.props.form
 		validateFields((err, values)=>{
 			if(!err){
 				// 请求数据
 				const newValues = _.cloneDeep(values) 
+				// 处理 pubdates
 				const {pubdate} = newValues
 				newValues.pubdate = !_.isNil(pubdate) ? moment(pubdate).format('YYYY-MM-DD') : moment().format('YYYY-MM-DD')
 				
-				const retBool = this._bookEditRequest({data: newValues, type: this.bookEditType})
+				const retBool = this._bookEditRequest({data: newValues, type: this.editType})
 				if(!retBool)
 					return  
 				this.setState({
-					bookModal: false
+					showModal: false
 				})
 				// book edit type 置为默认
-				this.bookEditType = ''
+				this.editType = ''
 				// form clear
 				resetFields()
 				// 刷新book list
-				this._requestBooksList()
+				this._requestData()
 			}
 		})
 	}
-	_bookModalCancel = ()=>{
+	_modalCancel = ()=>{
 		const {resetFields} = this.bookForm.props.form
 		// form clear
 		resetFields()
 		this.setState({
-			bookModal: false
+			showModal: false
 		})
 	}
 	_bookEditRequest = async ({data, type})=>{
 		try{
 			if(type === ADD){
+				// 添加图书
 				const ret = await fetchAddBook({body: {...data}})
 				if(_.isNil(ret)){
 					throw new Error('添加图书 获取请求结果失败')
@@ -192,6 +136,7 @@ class ApiContainer extends Component{
 				message.success(`添加图书成功`)
 				return true
 			}
+			// 修改图书信息
 			const { bookRowkeys } = this.state
 			let updateBody = {
 				...data,
@@ -218,50 +163,20 @@ class ApiContainer extends Component{
 			if(_.isNil(ret))
 				throw new Error('数据格式错误')
 			message.success(`移除图书信息成功`)
-			await this._requestBooksList()
+			await this._requestData()
 		}catch(e){
 			message.error(`移除图书失败 err=${e.message}`)
 		}
 	}
 
 	render(){
-		const categoryColumns = _.cloneDeep(categoryColumnsConst)
-		const bookColumns = _.cloneDeep(bookColumnConst)
+		const bookColumns = _.cloneDeep(columnConst)
 		const { 
-			categorysSource, categoryRowKeys, categoryRows, categoryModal,
-			booksSource, bookRowkeys, bookRows, bookModal,
+			booksSource, bookRowkeys, bookRows, showModal,
 		} = this.state
 		return (
 			<div>
-				<Card>
-					<span>图书种类</span>
-					<Button style={{marginLeft: 20}} type="primary" icon="plus" 
-						onClick={()=> this._categoryEdit(ADD)}
-					>增加</Button>
-					<Button style={{marginLeft: 20}} type="default" icon="edit" 
-						onClick={()=> this._categoryEdit(EDIT)}
-					>修改</Button>
-					<Button style={{marginLeft: 20}} type="danger" icon="delete"
-						onClick={()=> this._categoryEdit(DELETE)}
-					>删除</Button>
-				</Card>
-				<div className="content-wrap">
-					<CommonTable 
-						columns={categoryColumns}
-						dataSource={categorysSource}
-						scroll={{x:this.categoryColWidth, y:300}}
-						rowSelection='radio'
-						selectedRowKeys={categoryRowKeys}
-						selectedRows={categoryRows}
-						updateSelectedItem={(selectedRowKeys, selectedRows)=>{
-							this.setState({
-								categoryRowKeys: selectedRowKeys,
-								categoryRows: selectedRows,
-							})
-						}}
-					/>
-				</div>
-				<Card style={{marginTop: 20}}>
+				<Card >
 					<span>图书信息</span>
 					<Button style={{marginLeft: 20}} type="primary" icon="plus" 
 						onClick={()=> this._bookEdit(ADD)}
@@ -277,7 +192,7 @@ class ApiContainer extends Component{
 					<CommonTable 
 						columns={bookColumns}
 						dataSource={booksSource}
-						scroll={{x:this.bookColWidth, y:300}}
+						scroll={{x: this.colWidth, y: 300}}
 						pagination={null}
 						rowSelection='radio'
 						selectedRowKeys={bookRowkeys}
@@ -290,19 +205,13 @@ class ApiContainer extends Component{
 						}}
 					/>
 				</div>
-				<Modal visible={categoryModal} 
-					title={this.categoryModalTitle}
-					onOk={this._categoryModalOk}
-					onCancel={this._categoryModalCancel}
-				>
-				</Modal>
-				<Modal visible={bookModal} 
-					title={this.bookModalTitle}
-					onOk={this._bookModalOK}
-					onCancel={this._bookModalCancel}
+				<Modal visible={showModal} 
+					title={this.modalTitle}
+					onOk={this._modalOK}
+					onCancel={this._modalCancel}
 				>
 					<BookForm bookCategorys={this.childrenCategorys} 
-						formData={(this.bookEditType === EDIT && bookRows.length > 0) ? bookRows[0] : null}
+						formData={(this.editType === EDIT && bookRows.length > 0) ? bookRows[0] : null}
 						wrappedComponentRef={(form)=> this.bookForm = form}
 					/>
 				</Modal>

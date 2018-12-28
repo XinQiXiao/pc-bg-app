@@ -133,11 +133,21 @@ const menuList = [
 			{
 				title: 'less',
 				key: '/demo/less'
+			}
+		]
+	},
+	{
+		title: '图书',
+		key: '/book',
+		children: [
+			{
+				title: 'category',
+				key: '/book/category'
 			},
 			{
-				title: 'api',
-				key: '/demo/api'
-			}
+				title: 'bookInfo',
+				key: '/book/bookInfo'
+			},
 		]
 	}
 ]
