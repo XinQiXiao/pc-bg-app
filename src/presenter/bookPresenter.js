@@ -58,7 +58,6 @@ async function fetchbookAll({body}){
 		throw e
 	}
 }
-
 // 添加图书
 async function fetchAddBook({body}){
 	try{
@@ -77,12 +76,29 @@ async function fetchAddBook({body}){
 		throw e
 	}
 }
-
 // 修改图书信息
 async function fetchUpdateBook({body}){
 	try{
 		let curOption = {
 			url: 'book/modifyBookInfo',
+			isMock: false,
+			method: 'POST',
+			body,
+			data: {
+				isShowLoading: true,
+			}
+		}
+		const ret = await requestRemoteData({options: curOption})
+		return ret
+	}catch(e){
+		throw e
+	}
+}
+// 移除图书信息
+async function fetchRemoveBook({body}){
+	try{
+		let curOption = {
+			url: 'book/removeBookInfo',
 			isMock: false,
 			method: 'POST',
 			body,
@@ -103,4 +119,5 @@ export {
 	fetchbookAll,
 	fetchAddBook,
 	fetchUpdateBook,
+	fetchRemoveBook,
 }

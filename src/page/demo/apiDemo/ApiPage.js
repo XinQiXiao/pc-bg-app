@@ -21,7 +21,10 @@ import { categoryColumnsConst, bookColumnConst, } from './constants'
 import { fetchAddBook } from '../../../presenter/bookPresenter'
 
 const { calculateTableWidth, } = tableUtil
-const { fetchCategoryAll, fetchChildrenCategorys, fetchbookAll, fetchUpdateBook, } = bookPresenters
+const { 
+	fetchCategoryAll, fetchChildrenCategorys, fetchbookAll, 
+	fetchUpdateBook, fetchRemoveBook,
+} = bookPresenters
 
 const ADD = 'options_add'
 const EDIT = 'options_edit'
@@ -113,18 +116,19 @@ class ApiContainer extends Component{
 	}
 
 	_bookEdit = (type)=>{
-		const { bookRowkeys } = this.state
+		const { bookRowkeys, bookRows } = this.state
 		if(type !== ADD && bookRowkeys.length <= 0){
 			message.warn(`请至少选择一条图书信息进行编辑`)
 			return
 		}
 		// 处理删除
-		if(type === DELETE){
+		if(type === DELETE && bookRows.length > 0){
+			const {author = '', book_name = ''} = bookRows[0]
 			Modal.confirm({
 				title: '提示',
-				content: '确定删除图书信息',
+				content: `确定移除图书 书名《${book_name}》作者:${author}`,
 				onCancel: ()=> null,
-				onOk: ()=> null
+				onOk: this._bookDeleteRequest
 			})
 			return
 		}
@@ -191,7 +195,7 @@ class ApiContainer extends Component{
 			const { bookRowkeys } = this.state
 			let updateBody = {
 				...data,
-				book_id: _.isArray(bookRowkeys) && bookRowkeys.length >0 ? bookRowkeys[0] : null
+				book_id: (_.isArray(bookRowkeys) && bookRowkeys.length >0) ? bookRowkeys[0] : null
 			}
 			const retUpdate = await fetchUpdateBook({body: updateBody})
 			if(_.isNil(retUpdate)){
@@ -202,6 +206,21 @@ class ApiContainer extends Component{
 		}catch(e){
 			message.error(`操作失败 err=${e.message}`)
 			return false
+		}
+	}
+	_bookDeleteRequest = async ()=>{
+		try{
+			const { bookRowkeys } = this.state
+			let body = {
+				book_id: (_.isArray(bookRowkeys) && bookRowkeys.length > 0) ? bookRowkeys[0] : null 
+			}
+			const ret = await fetchRemoveBook({body})
+			if(_.isNil(ret))
+				throw new Error('数据格式错误')
+			message.success(`移除图书信息成功`)
+			await this._requestBooksList()
+		}catch(e){
+			message.error(`移除图书失败 err=${e.message}`)
 		}
 	}
 
@@ -252,7 +271,7 @@ class ApiContainer extends Component{
 					>修改</Button>
 					<Button style={{marginLeft: 20}} type="danger" icon="delete"
 						onClick={()=> this._bookEdit(DELETE)}
-					>删除</Button>
+					>移除</Button>
 				</Card>
 				<div className="content-wrap">
 					<CommonTable 

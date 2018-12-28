@@ -184,4 +184,4 @@
 						axios headers 参数设置
 					b. 修改 图书信息 
 						modal bookForm兼容
-				
+					c. 删除 图书信息
