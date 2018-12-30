@@ -19,7 +19,7 @@ import { tableUtil } from '../../../utils'
 // const 
 import { columnConst, } from './constants'
 
-const { calculateTableWidth, } = tableUtil
+const { calculateTableWidth, tablePagination, } = tableUtil
 const { 
 	fetchChildrenCategorys, fetchbookAll, fetchAddBook,
 	fetchUpdateBook, fetchRemoveBook, 
@@ -34,13 +34,18 @@ class ApiContainer extends Component{
 		booksSource: [],
 		bookRowkeys: [],
 		bookRows: [],
-		showModal: false
+		pagination: null,
+		showModal: false,
 	}
 	colWidth = calculateTableWidth(columnConst)
 	modalTitle = ''
 	childrenCategorys = []
 	bookForm = ''
 	editType = ''
+	page = {
+		page_size: 10,
+		page: 1,
+	}
 
 	componentDidMount(){
 		this._requestData()
@@ -48,18 +53,32 @@ class ApiContainer extends Component{
 
 	_requestData = async ()=>{
 		try{
+			let bookBody = {
+				page: {
+					...this.page,
+				}
+			}
 			const rets = await Promise.all([
-				fetchbookAll({body: {}}),
+				fetchbookAll({body: bookBody}),
 				fetchChildrenCategorys({body: {}})
 			])
 			if(!_.isArray(rets))
 				throw new Error('获取数据失败')
+			let _this = this 
 			// 获取数据  重置一些状态
 			this.childrenCategorys = rets[1]
 			this.setState({
-				booksSource: rets[0],
+				booksSource: _.isArray(rets[0].list) ? rets[0].list : [],
 				bookRowkeys: [],
 				bookRows: [],
+				pagination: tablePagination({...this.page, total: rets[0].sum}, (current)=>{
+					
+					_this.page = {
+						page: current,
+					}
+					// refresh
+					_this._requestData()
+				})
 			})
 			return true
 		}catch(e){
@@ -172,7 +191,7 @@ class ApiContainer extends Component{
 	render(){
 		const bookColumns = _.cloneDeep(columnConst)
 		const { 
-			booksSource, bookRowkeys, bookRows, showModal,
+			booksSource, bookRowkeys, bookRows, pagination, showModal,
 		} = this.state
 		return (
 			<div>
@@ -193,7 +212,7 @@ class ApiContainer extends Component{
 						columns={bookColumns}
 						dataSource={booksSource}
 						scroll={{x: this.colWidth, y: 300}}
-						pagination={null}
+						pagination={pagination}
 						rowSelection='radio'
 						selectedRowKeys={bookRowkeys}
 						selectedRows={bookRows}
