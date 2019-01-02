@@ -190,3 +190,11 @@
 				1.图书分类表和图书信息表分为两个页面, 拆分 APIDemo页面
 				2. Book Info page 分页
 				3. book info get book info list 和 get category list 分开(使得不再每次book info list 分页时请求图书类别列表)
+
+			t0.3.9 类别管理
+				1.增加类别
+					a.增加子类别 
+					b.增加父类别
+					c.类别表增加显示create_time, update_time, destroy_time
+				2.下架/ 上架
+				

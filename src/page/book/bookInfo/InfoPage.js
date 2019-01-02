@@ -21,7 +21,7 @@ import { columnConst, } from './constants'
 
 const { calculateTableWidth, tablePagination, } = tableUtil
 const { 
-	fetchChildrenCategorys, fetchbookAll, fetchAddBook,
+	fetchBookCategorys, fetchbookAll, fetchAddBook,
 	fetchUpdateBook, fetchRemoveBook, 
 } = bookPresenters
 
@@ -83,7 +83,7 @@ class ApiContainer extends Component{
 
 	_requestCategoryData = async ()=>{
 		try{
-			const categoryRet = await fetchChildrenCategorys({body: {}})
+			const categoryRet = await fetchBookCategorys({body: {type: 2}})
 			if(!_.isArray(categoryRet))
 				throw new Error('数据格式不正确')
 			this.childrenCategorys = categoryRet
@@ -216,7 +216,7 @@ class ApiContainer extends Component{
 					<CommonTable 
 						columns={bookColumns}
 						dataSource={booksSource}
-						scroll={{x: this.colWidth, y: 300}}
+						scroll={{x: this.colWidth, y: 600}}
 						pagination={pagination}
 						rowSelection='radio'
 						selectedRowKeys={bookRowkeys}

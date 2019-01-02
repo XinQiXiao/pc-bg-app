@@ -3,8 +3,8 @@
  */
 import { requestRemoteData } from './basePresenter'
 
-// 获取所有图书类别
-async function fetchCategoryAll({body}){
+// 获取图书类别 type 0 全部 type 1 父类别 type 2 子类别
+async function fetchBookCategorys({body}){
 	try{
 		let curOption = {
 			url: 'book/getBookCategorys',
@@ -21,11 +21,29 @@ async function fetchCategoryAll({body}){
 		throw e
 	}
 }
-// 获取所有图书子类别
-async function fetchChildrenCategorys({body}){
+// 添加类别
+async function fetchAddCategory({body}){
 	try{
 		let curOption = {
-			url: 'book/getBookChildrenCategorys',
+			url: 'book/addCategory',
+			isMock: false,
+			method: 'POST',
+			body,
+			data: {
+				isShowLoading: true,
+			}
+		}
+		const ret = await requestRemoteData({options: curOption})
+		return ret
+	}catch(e){
+		throw e
+	}
+}
+// 类别 上架，下架
+async function fetchHandleCategory({body}){
+	try{
+		let curOption = {
+			url: 'book/handleCategory',
 			isMock: false,
 			method: 'POST',
 			body,
@@ -114,8 +132,9 @@ async function fetchRemoveBook({body}){
 }
 
 export {
-	fetchCategoryAll,
-	fetchChildrenCategorys,
+	fetchBookCategorys,
+	fetchAddCategory,
+	fetchHandleCategory,
 	fetchbookAll,
 	fetchAddBook,
 	fetchUpdateBook,
