@@ -48,42 +48,47 @@ class ApiContainer extends Component{
 	}
 
 	componentDidMount(){
-		this._requestData()
+		this._requestBookInfoList()
+		this._requestCategoryData()
 	}
 
-	_requestData = async ()=>{
+	_requestBookInfoList = async ()=>{
 		try{
+			const _this = this
 			let bookBody = {
 				page: {
 					...this.page,
 				}
 			}
-			const rets = await Promise.all([
-				fetchbookAll({body: bookBody}),
-				fetchChildrenCategorys({body: {}})
-			])
-			if(!_.isArray(rets))
-				throw new Error('获取数据失败')
-			let _this = this 
-			// 获取数据  重置一些状态
-			this.childrenCategorys = rets[1]
+			const bookRet = await fetchbookAll({body: bookBody})
+			if(_.isNil(bookRet))
+				throw new Error('数据格式不正确')
 			this.setState({
-				booksSource: _.isArray(rets[0].list) ? rets[0].list : [],
+				booksSource: _.isArray(bookRet.list) ? bookRet.list : [],
 				bookRowkeys: [],
 				bookRows: [],
-				pagination: tablePagination({...this.page, total: rets[0].sum}, (current)=>{
+				pagination: tablePagination({...this.page, total: bookRet.sum}, (current)=>{
 					
 					_this.page = {
 						page: current,
 					}
 					// refresh
-					_this._requestData()
+					_this._requestBookInfoList()
 				})
 			})
-			return true
 		}catch(e){
-			message.error(`获取数据fail err=${e.message}`)
-			return false
+			message.error(`获取图书列表失败 err=${e.message}`)
+		}
+	}
+
+	_requestCategoryData = async ()=>{
+		try{
+			const categoryRet = await fetchChildrenCategorys({body: {}})
+			if(!_.isArray(categoryRet))
+				throw new Error('数据格式不正确')
+			this.childrenCategorys = categoryRet
+		}catch(e){
+			message.error(`获取图书分类fail err=${e.message}`)
 		}
 	}
 
@@ -132,7 +137,7 @@ class ApiContainer extends Component{
 				// form clear
 				resetFields()
 				// 刷新book list
-				this._requestData()
+				this._requestBookInfoList()
 			}
 		})
 	}
@@ -182,7 +187,7 @@ class ApiContainer extends Component{
 			if(_.isNil(ret))
 				throw new Error('数据格式错误')
 			message.success(`移除图书信息成功`)
-			await this._requestData()
+			await this._requestBookInfoList()
 		}catch(e){
 			message.error(`移除图书失败 err=${e.message}`)
 		}

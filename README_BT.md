@@ -189,3 +189,4 @@
 			t0.3.8 
 				1.图书分类表和图书信息表分为两个页面, 拆分 APIDemo页面
 				2. Book Info page 分页
+				3. book info get book info list 和 get category list 分开(使得不再每次book info list 分页时请求图书类别列表)
