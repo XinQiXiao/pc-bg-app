@@ -5,22 +5,22 @@ const columnConst = [
 	{
 		title: 'ID',
 		dataIndex: 'id',
-		width: 140,
+		width: 160,
 	},
 	{
 		title: '名称',
 		dataIndex: 'book_name',
-		width: 180,
+		width: 240,
 	},
 	{
 		title: '作者',
 		dataIndex: 'author',
-		width: 180,
+		width: 300,
 	},
 	{
 		title: '图书类别',
 		dataIndex: 'book_category.category',
-		width: 120,
+		width: 150,
 	},
 	{
 		title: '类别ID',
@@ -38,7 +38,7 @@ const columnConst = [
 	{
 		title: '出版社',
 		dataIndex: 'press',
-		width: 180,
+		width: 200,
 	},
 	{
 		title: '出版时间',

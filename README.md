@@ -64,6 +64,10 @@
   * 补充
     一步步搭建项目 可参考 README_BT.md
 
+# 待解决问题
+  * axios 在请求server 服务时，每次发起两次请求
+    详细看 t0.3.9 step 3
+
 # 参考 
   * react中文网 https://react.docschina.org
   * antd-design 中文文档 https://ant.design/docs/react/introduce-cn

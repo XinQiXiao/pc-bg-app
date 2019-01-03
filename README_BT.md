@@ -197,4 +197,6 @@
 					b.增加父类别
 					c.类别表增加显示create_time, update_time, destroy_time
 				2.下架/ 上架
+					api上架、下架拆分为两个接口
+				3. TODO 发现 现在的请求，到服务端每个都发起两遍，需要查找原因并解决
 				

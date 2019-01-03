@@ -70,6 +70,7 @@ class ApiContainer extends Component{
 				pagination: tablePagination({...this.page, total: bookRet.sum}, (current)=>{
 					
 					_this.page = {
+						..._this.page,
 						page: current,
 					}
 					// refresh

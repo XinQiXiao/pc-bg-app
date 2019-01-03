@@ -23,7 +23,7 @@ const columnsConst = [
 		title: '状态',
 		dataIndex: 'status',
 		width: 80,
-		render: (target)=> target=== 1 ? '上架' : '下架'
+		render: (target)=> target === 1 ? '上架' : '下架'
 	},
 	{
 		title: '创建时间',

@@ -39,11 +39,29 @@ async function fetchAddCategory({body}){
 		throw e
 	}
 }
-// 类别 上架，下架
-async function fetchHandleCategory({body}){
+// 类别 上架
+async function fetchPutAwayCategory({body}){
 	try{
 		let curOption = {
-			url: 'book/handleCategory',
+			url: 'book/putAwayCategory',
+			isMock: false,
+			method: 'POST',
+			body,
+			data: {
+				isShowLoading: true,
+			}
+		}
+		const ret = await requestRemoteData({options: curOption})
+		return ret
+	}catch(e){
+		throw e
+	}
+}
+// 类别 下架
+async function fetchSoldOutCategory({body}){
+	try{
+		let curOption = {
+			url: 'book/soldOutCategory',
 			isMock: false,
 			method: 'POST',
 			body,
@@ -134,7 +152,8 @@ async function fetchRemoveBook({body}){
 export {
 	fetchBookCategorys,
 	fetchAddCategory,
-	fetchHandleCategory,
+	fetchPutAwayCategory,
+	fetchSoldOutCategory,
 	fetchbookAll,
 	fetchAddBook,
 	fetchUpdateBook,

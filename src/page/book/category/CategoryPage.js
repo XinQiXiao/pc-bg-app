@@ -20,7 +20,7 @@ import { columnsConst, } from './constants'
 
 const { calculateTableWidth, } = tableUtil
 const { 
-	fetchBookCategorys, fetchAddCategory, fetchHandleCategory,
+	fetchBookCategorys, fetchAddCategory, fetchPutAwayCategory, fetchSoldOutCategory
 } = bookPresenters
 
 const ADD = 'options_add'
@@ -103,10 +103,14 @@ class CategoryPage extends Component{
 		try{
 			const {categoryRowKeys} = this.state
 			let body = {
-				type: cType === PUT_AWAY ? 1 : 2,
 				category_id: (_.isArray(categoryRowKeys) && categoryRowKeys.length > 0) ? categoryRowKeys[0] : null
 			}
-			const ret = await fetchHandleCategory({body})
+			let ret = null 
+			if(cType === PUT_AWAY){
+				ret = await fetchPutAwayCategory({body})
+			} else {
+				ret = await fetchSoldOutCategory({body})
+			}
 			if(_.isNil(ret))
 				throw new Error(`数据格式不正确`)
 			message.success(`操作类别成功`)
