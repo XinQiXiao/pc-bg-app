@@ -7,9 +7,12 @@ import {
 	Select, Switch, DatePicker, TimePicker, Upload,
 } from 'antd'
 import moment from 'moment'
+import _ from 'lodash'
 
 // const 
 import { consConfig } from '../../config'
+
+const { stateCons, interestCons } = consConfig
 
 const FormItem = Form.Item
 const RadioGroup = Radio.Group
@@ -119,14 +122,16 @@ class RegisterFormPage extends Component{
 						<FormItem label="当前状态" {...formItemLayout}>
 							{
 								getFieldDecorator('state', {
-									initialValue: '2'
+									initialValue: stateCons[0].id
 								})(
 									<Select>
-										<SelectOption value='1'>{consConfig.stateCons[0]}</SelectOption>
-										<SelectOption value='2'>{consConfig.stateCons[1]}</SelectOption>
-										<SelectOption value='3'>{consConfig.stateCons[2]}</SelectOption>
-										<SelectOption value='4'>{consConfig.stateCons[3]}</SelectOption>
-										<SelectOption value='5'>{consConfig.stateCons[4]}</SelectOption>
+										{
+											!_.isArray(stateCons) ? null : (
+												stateCons.map((item, index)=> 
+													<SelectOption key={index} value={item.id}>{item.name}</SelectOption>
+												)
+											)
+										}
 									</Select>
 								)
 							}
@@ -137,14 +142,13 @@ class RegisterFormPage extends Component{
 									initialValue: []
 								})(
 									<Select mode='multiple'>
-										<SelectOption value='1'>{consConfig.interestCons[0]}</SelectOption>
-										<SelectOption value='2'>{consConfig.interestCons[1]}</SelectOption>
-										<SelectOption value='3'>{consConfig.interestCons[2]}</SelectOption>
-										<SelectOption value='4'>{consConfig.interestCons[3]}</SelectOption>
-										<SelectOption value='5'>{consConfig.interestCons[4]}</SelectOption>
-										<SelectOption value='6'>{consConfig.interestCons[5]}</SelectOption>
-										<SelectOption value='7'>{consConfig.interestCons[6]}</SelectOption>
-										<SelectOption value='8'>{consConfig.interestCons[7]}</SelectOption>
+										{
+											!_.isArray(interestCons) ? null : (
+												interestCons.map((item, index)=> 
+													<SelectOption key={index} value={item.id}>{item.name}</SelectOption>
+												)
+											)
+										}
 									</Select>
 								)
 							}

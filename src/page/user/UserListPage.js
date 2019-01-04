@@ -104,7 +104,6 @@ class UserListComponent extends Component{
 				})
 			})
 		}catch(e){
-			console.log('e=>', e)
 			message.error(`err=${e.message}`)
 		}
 	}
@@ -184,6 +183,12 @@ class UserListComponent extends Component{
 			userList, pagination, selectedRowKeys, selectedRows, showModal,
 		} = this.state
 		const columns = _.cloneDeep(userColumnsConst)
+		let footer = {}
+		if(this.modalType === INFO){
+			footer = {
+				footer: null
+			}
+		}
 		return(
 			<div>
 				<Card>
@@ -231,8 +236,16 @@ class UserListComponent extends Component{
 					title={this.modalTitle}
 					onOk={()=> this._modalOKClick()}
 					onCancel={this._modalCancelClick}
+					{...footer}
 				>
-					<UserFormComponent wrappedComponentRef={(form)=> this.innerForm = form}/>
+					<UserFormComponent 
+						editAble={this.modalType === INFO ? false : true}
+						itemData={(this.modalType === EDIT || this.modalType === INFO ) ? 
+							(selectedRows.length > 0 ? selectedRows[0] : null)
+							: null
+						}
+						wrappedComponentRef={(form)=> this.innerForm = form}
+					/>
 				</Modal>
 			</div>
 		)

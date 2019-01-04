@@ -4,6 +4,7 @@
 import React, { Component } from 'react'
 import { Form, Input, Radio, Select, Switch, DatePicker, } from 'antd'
 import moment from 'moment'
+import _ from 'lodash'
 
 // config
 import { consConfig } from '../../config'
@@ -18,6 +19,7 @@ const TextArea = Input.TextArea
 
 class UserForm extends Component{
 	render(){
+		const {itemData, editAble} = this.props
 		const {getFieldDecorator} = this.props.form
 		const formItemLayout = {
 			labelCol: {
@@ -31,13 +33,15 @@ class UserForm extends Component{
 			<Form layout="horizontal">
 				<FormItem label="姓名" {...formItemLayout}>
 					{
+						!editAble ? ((itemData && itemData.username) ? itemData.username : '') :
 						getFieldDecorator('username', {
 							rules: [
 								{
 									required: true,
 									message: '请输入员工姓名'
 								}
-							]
+							],
+							initialValue: (itemData && itemData.username) ? itemData.username : ''
 						})(
 							<Input placeholder="请输入姓名"/>
 						)
@@ -45,18 +49,23 @@ class UserForm extends Component{
 				</FormItem>
 				<FormItem label="性别" {...formItemLayout}>
 					{
+						!editAble ? ((itemData && itemData.sex && itemData.sex<sexCons.length-1) ? sexCons[itemData.sex].name : '') :
 						getFieldDecorator('sex', {
-							initialValue: sexCons[0].id
+							initialValue: (itemData && itemData.sex) ? itemData.sex : sexCons[0].id
 						})(
 							<RadioGroup>
-								<Radio value={sexCons[0].id}>{sexCons[0].name}</Radio>
-								<Radio value={sexCons[1].id}>{sexCons[1].name}</Radio>
+								{
+									sexCons.map((item, index)=>
+										<Radio key={index} value={item.id}>{item.name}</Radio>
+									)
+								}
 							</RadioGroup>
 						)
 					}
 				</FormItem>
 				<FormItem label="手机号" {...formItemLayout}>
 					{
+						!editAble ? ((itemData && itemData.tel) ? itemData.tel : '') :
 						getFieldDecorator('tel', {
 							rules: [
 								{
@@ -67,7 +76,8 @@ class UserForm extends Component{
 									pattern: /^1\d{10}/,
 									message: '手机号不正确'
 								}
-							]
+							],
+							initialValue: (itemData && itemData.tel) ? itemData.tel : ''
 						})(
 							<Input placeholder="请输入手机号"/>
 						)
@@ -75,41 +85,46 @@ class UserForm extends Component{
 				</FormItem>
 				<FormItem label="状态" {...formItemLayout}>
 					{
+						!editAble ? ((itemData && itemData.state && itemData.state < stateCons.length-1) ? stateCons[itemData.state].name : '') :
 						getFieldDecorator('state', {
-							
+							initialValue: (itemData && itemData.state) ? itemData.state : stateCons[0].id
 						})(
 							<Select>
-								<SelectOption value="1">{stateCons[0]}</SelectOption>
-								<SelectOption value="2">{stateCons[1]}</SelectOption>
-								<SelectOption value="3">{stateCons[2]}</SelectOption>
-								<SelectOption value="4">{stateCons[3]}</SelectOption>
-								<SelectOption value="5">{stateCons[4]}</SelectOption>
+								{
+									!_.isArray(stateCons) ? null : (
+										stateCons.map((item, index)=> 
+											<SelectOption key={index} value={item.id}>{item.name}</SelectOption>
+										)
+									)
+								}
 							</Select>
 						)
 					}
 				</FormItem>
 				<FormItem label="兴趣爱好" {...formItemLayout}>
 					{
+						!editAble ? ((itemData && itemData.interest && itemData.interest < interestCons.length-1) ? interestCons[itemData.interest].name : '') :
 						getFieldDecorator('interest', {
-							
+							initialValue: (itemData && itemData.interest) ? itemData.interest : interestCons[0].id
 						})(
 							<Select>
-								<SelectOption value="1">{interestCons[0]}</SelectOption>
-								<SelectOption value="2">{interestCons[1]}</SelectOption>
-								<SelectOption value="3">{interestCons[2]}</SelectOption>
-								<SelectOption value="4">{interestCons[3]}</SelectOption>
-								<SelectOption value="5">{interestCons[4]}</SelectOption>
-								<SelectOption value="6">{interestCons[5]}</SelectOption>
-								<SelectOption value="7">{interestCons[6]}</SelectOption>
+								{
+									!_.isArray(interestCons) ? null : (
+										interestCons.map((item, index)=> 
+											<SelectOption key={index} value={item.id}>{item.name}</SelectOption>
+										)
+									)
+								}
 							</Select>
 						)
 					}
 				</FormItem>
 				<FormItem label="婚否" {...formItemLayout}>
 					{
+						!editAble ? ((itemData && itemData.isMarried) ? '已婚' : '未婚') :						
 						getFieldDecorator('isMarried', {
 							valuePropName: 'checked',
-							initialValue: false
+							initialValue: (itemData && itemData.isMarried) ? true : false
 						})(
 							<Switch />
 						)
@@ -117,8 +132,9 @@ class UserForm extends Component{
 				</FormItem>
 				<FormItem label="生日" {...formItemLayout}>
 					{
+						!editAble ? ((itemData && itemData.birthday) ? itemData.birthday : '') :
 						getFieldDecorator('birthday', {
-							initialValue: moment()
+							initialValue: (itemData && itemData.birthday) ? moment(itemData.birthday) : moment()
 						})(
 							<DatePicker 
 								showTime
@@ -129,8 +145,9 @@ class UserForm extends Component{
 				</FormItem>
 				<FormItem label="联系地址" {...formItemLayout}>
 					{
+						!editAble ? ((itemData && itemData.address) ? itemData.address : '') :
 						getFieldDecorator('address', {
-							initialValue: ''
+							initialValue: (itemData && itemData.address) ? itemData.address : ''
 						})(
 							<TextArea 
 								autosize={{
@@ -142,8 +159,9 @@ class UserForm extends Component{
 				</FormItem>
 				<FormItem label="注册时间" {...formItemLayout}>
 					{
+						!editAble ? ((itemData && itemData.registertime) ? itemData.registertime : '') :
 						getFieldDecorator('registertime', {
-							initialValue: moment()
+							initialValue: (itemData && itemData.registertime) ? moment(itemData.registertime) : moment()
 						})(
 							<DatePicker 
 								showTime

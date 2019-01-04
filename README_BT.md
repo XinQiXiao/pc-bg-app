@@ -157,7 +157,7 @@
 				1. 页面搭建
 				2.filterForm 使用
 				3. commonTable 使用
-				4. handle modal 组件（TODO）[编辑、详情、移除]
+				4. handle modal 组件
 					a.创建员工
 
 			t0.3.5 测试本地 pc-bg-api
@@ -199,4 +199,10 @@
 				2.下架/ 上架
 					api上架、下架拆分为两个接口
 				3. TODO 发现 现在的请求，到服务端每个都发起两遍，需要查找原因并解决
+
+			t0.4.0 user (员工管理页面完善) <接>t0.3.4
+				1. 编辑员工modal
+					stateCons 状态常量 结构变更 全局兼容
+					interestCons 状态变量 结构变更 全局兼容
+				2. 员工详情
 				

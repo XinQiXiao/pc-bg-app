@@ -41,16 +41,16 @@ const columnsConst = [
 		title: '状态',
 		dataIndex: 'state',
 		width: 120,
-		render(state){
-			return state <= stateCons.length ? stateCons[state-1] : ''
+		render(target){
+			return target < stateCons.length ? stateCons[target-1].name : ''
 		}
 	},
 	{
 		title: '爱好',
 		dataIndex: 'interest',
 		width: 100,
-		render(interest){
-			return interest <= interestCons.length ? interestCons[interest-1] : ''
+		render(target){
+			return target < interestCons.length ? interestCons[target-1].name : ''
 		}
 	},
 	{
@@ -108,16 +108,16 @@ const columnsLongConst = [
 		title: '状态',
 		dataIndex: 'state',
 		width: 120,
-		render(state){
-			return state <= stateCons.length ? stateCons[state-1] : ''
+		render(target){
+			return target < stateCons.length ? stateCons[target-1].name : ''
 		}
 	},
 	{
 		title: '爱好',
 		dataIndex: 'interest',
 		width: 100,
-		render(interest){
-			return interest <= interestCons.length ? interestCons[interest-1] : ''
+		render(target){
+			return target < interestCons.length ? interestCons[target-1].name : ''
 		}
 	},
 	{
@@ -189,16 +189,16 @@ const columnsSortConst = [
 		title: '状态',
 		dataIndex: 'state',
 		width: 120,
-		render(state){
-			return state <= stateCons.length ? stateCons[state-1] : ''
+		render(target){
+			return target < stateCons.length ? stateCons[target-1].name : ''
 		}
 	},
 	{
 		title: '爱好',
 		dataIndex: 'interest',
 		width: 100,
-		render(interest){
-			return interest <= interestCons.length ? interestCons[interest-1] : ''
+		render(target){
+			return target < interestCons.length ? interestCons[target-1].name : ''
 		}
 	},
 	{
@@ -240,11 +240,11 @@ const columnsHandleConst = [
 		width: 120,
 		render(state){
 			const config = {
-				'1': <Badge status="default" text={stateCons[0]}/>,
-				'2': <Badge status="error" text={stateCons[1]}/>,
-				'3': <Badge status="processing" text={stateCons[2]}/>,
-				'4': <Badge status="success" text={stateCons[3]}/>,
-				'5': <Badge status="warning" text={stateCons[4]}/>,
+				'1': <Badge status="default" text={stateCons[0].name}/>,
+				'2': <Badge status="error" text={stateCons[1].name}/>,
+				'3': <Badge status="processing" text={stateCons[2].name}/>,
+				'4': <Badge status="success" text={stateCons[3].name}/>,
+				'5': <Badge status="warning" text={stateCons[4].name}/>,
 			}
 			return config[state]
 		}
@@ -253,8 +253,8 @@ const columnsHandleConst = [
 		title: '爱好',
 		dataIndex: 'interest',
 		width: 100,
-		render(interest){
-			return interest <= interestCons.length ? interestCons[interest-1] : ''
+		render(target){
+			return target < interestCons.length ? interestCons[target-1].name : ''
 		}
 	},
 	{

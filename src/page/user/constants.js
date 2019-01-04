@@ -39,7 +39,7 @@ const userColumns = [
 		dataIndex: 'state',
 		width: 180,
 		render(target){
-			return stateCons[target]
+			return target < stateCons.length ? stateCons[target-1].name : ''
 		}
 	},
 	{
@@ -47,7 +47,7 @@ const userColumns = [
 		dataIndex: 'interest',
 		width: 140,
 		render(target){
-			return interestCons[target]
+			return target < interestCons.length ? interestCons[target-1].name : ''
 		}
 	},
 	{
