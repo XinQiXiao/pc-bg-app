@@ -6,6 +6,7 @@ import * as bookPresenters from './bookPresenter'
 import * as bikePresenters from './bikePresenter'
 import * as cityPresenters from './cityPresenter'
 import * as userPresenters from './userPresenter'
+import * as orderPresenters from './orderPresenter'
 import * as commonPresenters from './commonPresenter'
 
 export {
@@ -14,5 +15,6 @@ export {
 	bikePresenters,
 	cityPresenters,
 	userPresenters,
+	orderPresenters,
 	commonPresenters,
 }

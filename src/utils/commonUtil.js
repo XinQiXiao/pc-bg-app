@@ -48,7 +48,24 @@ function transformMarry(num){
 	return reMarry
 }
 
+/**
+ *  money translate
+ */
+function translateToRMB(target){
+	let moneyNum = Number.parseInt(target/100, 10).toFixed(2)
+	return '￥' + moneyNum
+}
+
+/**
+ * translate distance
+ */
+function translateDistance(target){
+	return target/1000 + 'km'
+}
+
 export {
 	transformSex,
 	transformMarry,
+	translateToRMB,
+	translateDistance,
 }

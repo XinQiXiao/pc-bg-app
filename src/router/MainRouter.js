@@ -32,6 +32,8 @@ import {
 	BikeMapPage,
 	// user
 	UserListPage,
+	// order
+	OrderPage,
 	// Demo
 	ReactPage, LessPage, 
 	// book 
@@ -88,6 +90,8 @@ class MainRouter extends Component{
 									<Route path="/bikeMap" component={BikeMapPage}/>
 									{/* User */}
 									<Route path="/user" component={UserListPage}/>
+									{/* order */}
+									<Route path="/order" component={OrderPage}/>
 									{/* Demo */}
 									<Route path="/demo/react" component={ReactPage}/>
 									<Route path="/demo/less" component={LessPage}/>
