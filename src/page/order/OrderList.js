@@ -101,10 +101,18 @@ class OrderPage extends Component{
 	}
 
 	_orderInfoClick = ()=> {
-		const {selectedRowKeys} = this.state
-		if(selectedRowKeys.length<1){
-			message.info(`至少选择一个订单`)
-			return 
+		try{
+			const {selectedRowKeys} = this.state
+			if(selectedRowKeys.length<1){
+				message.info(`至少选择一个订单`)
+				return 
+			}
+			// 通过新窗口打开
+			window.open(`/#/common/order/detail/${selectedRowKeys[0]}`, '_blank')
+			// 通过 hash 路由跳转
+			// window.location.href = `/#/common/order/detail/${selectedRowKeys[0]}`
+		}catch(e){
+			message.error(`获取订单详情失败 err=${e.message}`)
 		}
 	}
 	_orderEndClick = async ()=>{

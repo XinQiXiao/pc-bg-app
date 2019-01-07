@@ -33,7 +33,7 @@ import { BikeMapPage } from './bike'
 import { UserListPage } from './user'
 
 // order
-import { OrderPage } from './order'
+import { OrderDetailsPage, OrderListPage, } from './order'
 
 // Demo
 import { ReactPage, LessPage, } from './demo'
@@ -65,7 +65,8 @@ export {
 	// user
 	UserListPage,
 	// order
-	OrderPage,
+	OrderListPage,
+	OrderDetailsPage,
 	// book
 	BookCategoryPage, BookInfoPage,
 	// Demo

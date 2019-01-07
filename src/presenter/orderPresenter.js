@@ -60,9 +60,29 @@ async function fetchFinishOrder({params}){
 		throw e
 	}
 }
+// 获取订单详情
+async function fetchOrderDetail({params}){
+	try{
+		let curOption = {
+			url: 'order/detail',
+			isMock: true,
+			data: {
+				params: {
+					...params
+				},
+				isShowLoading: true,
+			},
+		}
+		const ret = await requestRemoteData({options: curOption})
+		return ret
+	}catch(e){
+		throw e
+	}
+}
 
 export {
 	fetchOrderList,
 	fetchEndOrderInfo,
 	fetchFinishOrder,
+	fetchOrderDetail,
 }

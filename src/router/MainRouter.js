@@ -33,7 +33,7 @@ import {
 	// user
 	UserListPage,
 	// order
-	OrderPage,
+	OrderDetailsPage, OrderListPage,
 	// Demo
 	ReactPage, LessPage, 
 	// book 
@@ -41,7 +41,6 @@ import {
 	// Error
 	ErrorPage,
 } from '../page'
-
 
 class MainRouter extends Component{
 	render(){
@@ -53,7 +52,7 @@ class MainRouter extends Component{
 						<Route path="/common" render={()=>
 							<Common>
 								<Switch>
-									<Route path="/common/demo" component={CommonDemo}/>
+									<Route path="/common/order/detail/:orderId" component={OrderDetailsPage}/>
 								</Switch>
 							</Common>
 						}>
@@ -91,7 +90,7 @@ class MainRouter extends Component{
 									{/* User */}
 									<Route path="/user" component={UserListPage}/>
 									{/* order */}
-									<Route path="/order" component={OrderPage}/>
+									<Route path="/order" component={OrderListPage}/>
 									{/* Demo */}
 									<Route path="/demo/react" component={ReactPage}/>
 									<Route path="/demo/less" component={LessPage}/>

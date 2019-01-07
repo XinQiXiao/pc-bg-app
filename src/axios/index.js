@@ -14,7 +14,7 @@ class Axios{
 			loading.style.display = 'block'
 		}
 		// 打印 params
-		console.log(`axios request url=${options.baseURL+options.url}`)
+		console.log(`axios request url=${options.baseURL+'/'+options.url}`)
 		console.log('axios request data=>', options.data)
 		console.log('axios request body=>', options.body)
 		return new Promise((resolve, reject)=>{

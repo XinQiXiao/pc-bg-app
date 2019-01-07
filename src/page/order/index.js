@@ -1,8 +1,10 @@
 /**
  * create at 01/04/19
  */
-import OrderPage from './OrderList'
+import OrderListPage from './OrderList'
+import OrderDetailsPage from './DetailsPage'
 
 export {
-	OrderPage,
+	OrderListPage,
+	OrderDetailsPage,
 }

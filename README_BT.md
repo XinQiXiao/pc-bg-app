@@ -212,3 +212,7 @@
 				3.页面 table配置
 					a. 计算金额 转换， 距离转换
 				4. 结束订单
+				5. 解决 一个webpack-dev-server 安全问题 
+					url : https://github.com/XinQiXiao/pc-bg-app/network/alert/package.json/webpack-dev-server/closed
+				6.订单详情 
+					-> 地图
