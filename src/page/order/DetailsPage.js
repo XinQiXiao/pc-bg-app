@@ -8,6 +8,9 @@ import _ from 'lodash'
 // presenters
 import { orderPresenters } from '../../presenter'
 
+// util
+import {commonUtil} from '../../utils'
+
 // style
 import './details.less'
 
@@ -115,10 +118,63 @@ class DetailsPage extends Component{
 	}
 
 	render(){
+		const info = this.state.orderInfo || {}
 		return (
 			<div>
 				<Card>
-					<div id="orderDetailMap" className="order-map"></div>
+					<div id="orderDetailMap" className="order-detail-map"></div>
+					<div className="order-detail-items">
+						<div className="item-title">基础信息</div>
+						<ul className="detail-form">
+							<li>
+								<div className="detail-form-left">用车模式</div>
+								<div className="detail-form-content">{
+									info.mode ? (info.mode === 1 ? '服务区' : '停车点') : ''
+								}</div>
+							</li>
+							<li>
+								<div className="detail-form-left">订单编号</div>
+								<div className="detail-form-content">{
+									info.order_code ? info.order_code : ''
+								}</div>
+							</li>
+							<li>
+								<div className="detail-form-left">车辆编号</div>
+								<div className="detail-form-content">{
+									info.bike_code ? info.bike_code : ''
+								}</div>
+							</li>
+							<li>
+								<div className="detail-form-left">用户姓名</div>
+								<div className="detail-form-content">{
+									info.user_name ? info.user_name : ''
+								}</div>
+							</li>
+						</ul>
+					</div>
+					<div className="order-detail-items">
+						<div className="item-title">行驶轨迹</div>
+						<ul className="detail-form">
+							<li>
+								<div className="detail-form-left">行程起点</div>
+								<div className="detail-form-content">{
+									info.start_location ? info.start_location : ''
+								}</div>
+							</li>
+							<li>
+								<div className="detail-form-left">行程终点</div>
+								<div className="detail-form-content">{
+									info.end_location ? info.end_location : ''
+								}</div>
+							</li>
+							<li>
+								<div className="detail-form-left">行程里程</div>
+								<div className="detail-form-content">{
+									info.distance ? commonUtil.translateDistance(info.distance) : ''
+								}</div>
+							</li>
+						</ul>
+					</div>
 				</Card>
 			</div>
 		)

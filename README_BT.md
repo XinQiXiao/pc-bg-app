@@ -215,4 +215,5 @@
 				5. 解决 一个webpack-dev-server 安全问题 
 					url : https://github.com/XinQiXiao/pc-bg-app/network/alert/package.json/webpack-dev-server/closed
 				6.订单详情 
-					-> 地图
+					订单车辆轨迹地图
+					订单基础信息、订单行程信息
