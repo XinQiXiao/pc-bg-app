@@ -41,6 +41,9 @@ import { ReactPage, LessPage, } from './demo'
 // book
 import { BookCategoryPage, BookInfoPage, } from './book'
 
+// login
+import { LoginPage } from './login'
+
 // Error
 import { ErrorPage, } from './error'
 
@@ -70,7 +73,10 @@ export {
 	// book
 	BookCategoryPage, BookInfoPage,
 	// Demo
-	ReactPage, LessPage,
 	// Error
 	ErrorPage,
+	ReactPage, LessPage,
+	//// login Router
+	// login
+	LoginPage,
 }

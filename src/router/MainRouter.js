@@ -7,6 +7,7 @@ import {Route, HashRouter, Switch, Redirect} from 'react-router-dom'
 // router
 import Admin from './AdminRouter'
 import Common from './CommonRouter'
+import Login from './LoginRouter'
 
 // app
 import AppRoot from './App'
@@ -38,6 +39,8 @@ import {
 	ReactPage, LessPage, 
 	// book 
 	BookCategoryPage, BookInfoPage,
+	/// login router 
+	LoginPage,
 	// Error
 	ErrorPage,
 } from '../page'
@@ -48,7 +51,6 @@ class MainRouter extends Component{
 			<HashRouter>
 				<AppRoot>
 					<Switch>
-						<Route path="/login" component={LoginDemo}/>
 						<Route path="/common" render={()=>
 							<Common>
 								<Switch>
@@ -57,50 +59,58 @@ class MainRouter extends Component{
 							</Common>
 						}>
 						</Route>
-						<Route path="/" render={()=>
+						<Route path="/admin" render={()=>
 							<Admin>
 								<Switch>
 									{/* Home */}
-									<Route path="/home" component={HomePage}/>
+									<Route path="/admin/home" component={HomePage}/>
 									{/* UI */}
-									<Route path="/ui/buttons" component={ButtonPage}/>
-									<Route path="/ui/modals" component={ModalPage}/>
-									<Route path="/ui/loadings" component={LoadingPage}/>
-									<Route path="/ui/notification" component={NotificationPage}/>
-									<Route path="/ui/messages" component={MessagePage}/>
-									<Route path="/ui/tabs" component={TabPage}/>
-									<Route path="/ui/gallery" component={GalleryPage}/>
-									<Route path="/ui/carousel" component={CarouselPage}/>
+									<Route path="/admin/ui/buttons" component={ButtonPage}/>
+									<Route path="/admin/ui/modals" component={ModalPage}/>
+									<Route path="/admin/ui/loadings" component={LoadingPage}/>
+									<Route path="/admin/ui/notification" component={NotificationPage}/>
+									<Route path="/admin/ui/messages" component={MessagePage}/>
+									<Route path="/admin/ui/tabs" component={TabPage}/>
+									<Route path="/admin/ui/gallery" component={GalleryPage}/>
+									<Route path="/admin/ui/carousel" component={CarouselPage}/>
 									{/* Form */}
-									<Route path="/form/login" component={LoginFormPage}/>
-									<Route path="/form/reg" component={RegisterFormPage}/>
+									<Route path="/admin/form/login" component={LoginFormPage}/>
+									<Route path="/admin/form/reg" component={RegisterFormPage}/>
 									{/* Table */}
-									<Route path="/table/basic" component={BasicTablePage}/>
-									<Route path="/table/high" component={HighTablePage}/>
+									<Route path="/admin/table/basic" component={BasicTablePage}/>
+									<Route path="/admin/table/high" component={HighTablePage}/>
 									{/* Rich */}
-									<Route path="/rich" component={RichPage}/>
+									<Route path="/admin/rich" component={RichPage}/>
 									{/* Chart */}
-									<Route path="/charts/bar" component={BarChartPage}/>
-									<Route path="/charts/pie" component={PieChartPage}/>
-									<Route path="/charts/line" component={LineChartPage}/>
+									<Route path="/admin/charts/bar" component={BarChartPage}/>
+									<Route path="/admin/charts/pie" component={PieChartPage}/>
+									<Route path="/admin/charts/line" component={LineChartPage}/>
 									{/* City */}
-									<Route path="/city" component={CityPage}/>
+									<Route path="/admin/city" component={CityPage}/>
 									{/* Bike */}
-									<Route path="/bikeMap" component={BikeMapPage}/>
+									<Route path="/admin/bikeMap" component={BikeMapPage}/>
 									{/* User */}
-									<Route path="/user" component={UserListPage}/>
+									<Route path="/admin/user" component={UserListPage}/>
 									{/* order */}
-									<Route path="/order" component={OrderListPage}/>
+									<Route path="/admin/order" component={OrderListPage}/>
 									{/* Demo */}
-									<Route path="/demo/react" component={ReactPage}/>
-									<Route path="/demo/less" component={LessPage}/>
+									<Route path="/admin/demo/react" component={ReactPage}/>
+									<Route path="/admin/demo/less" component={LessPage}/>
 									{/* book */}
-									<Route path="/book/category" component={BookCategoryPage}/>
-									<Route path="/book/bookInfo" component={BookInfoPage}/>
-									<Redirect to="/home"/>
+									<Route path="/admin/book/category" component={BookCategoryPage}/>
+									<Route path="/admin/book/bookInfo" component={BookInfoPage}/>
+									<Redirect to="/admin/home"/>
 									<Route component={ErrorPage}/>
 								</Switch>
 							</Admin>
+						}/>
+						<Route path="/" render={()=> 
+							<Login>
+								<Switch>
+									<Route path="/login" component={LoginPage}/>
+									<Redirect to="/login"/>
+								</Switch>
+							</Login>
 						}/>
 					</Switch>
 				</AppRoot>
@@ -108,8 +118,5 @@ class MainRouter extends Component{
 		)
 	}
 }
-
-const CommonDemo = ()=>(<div>Common Demo</div>)
-const LoginDemo = ()=>(<div>Login Demo</div>)
 
 export default MainRouter
