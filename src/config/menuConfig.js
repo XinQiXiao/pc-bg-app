@@ -149,6 +149,16 @@ const menuList = [
 				key: '/admin/book/bookInfo'
 			},
 		]
+	},
+	{
+		title: '办公app',
+		key: '/admin/workApp',
+		children: [
+			{
+				title: '员工账户',
+				key: '/admin/workApp/userAccount',
+			}
+		]
 	}
 ]
 
