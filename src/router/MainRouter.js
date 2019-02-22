@@ -39,6 +39,8 @@ import {
 	ReactPage, LessPage, 
 	// book 
 	BookCategoryPage, BookInfoPage,
+	// workApp
+	EmployeesPage,
 	/// login router 
 	LoginPage,
 	// Error
@@ -99,6 +101,8 @@ class MainRouter extends Component{
 									{/* book */}
 									<Route path="/admin/book/category" component={BookCategoryPage}/>
 									<Route path="/admin/book/bookInfo" component={BookInfoPage}/>
+									{/* workApp */}
+									<Route path="/admin/workApp/employees" component={EmployeesPage}/>
 									<Redirect to="/admin/home"/>
 									<Route component={ErrorPage}/>
 								</Switch>

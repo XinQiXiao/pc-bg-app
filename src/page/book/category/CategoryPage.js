@@ -51,7 +51,7 @@ class CategoryPage extends Component{
 			if(!_.isArray(rets))
 				throw new Error('获取数据失败')
 			this.parentCategorys = rets[0]
-			// 获取数据  重置一些状态
+			// 获取数据  重置list状态
 			this.setState({
 				categorysSource: rets[1],
 				categoryRowKeys: [],

@@ -156,7 +156,7 @@ const menuList = [
 		children: [
 			{
 				title: '员工账户',
-				key: '/admin/workApp/userAccount',
+				key: '/admin/workApp/employees',
 			}
 		]
 	}

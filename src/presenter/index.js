@@ -8,6 +8,7 @@ import * as cityPresenters from './cityPresenter'
 import * as userPresenters from './userPresenter'
 import * as orderPresenters from './orderPresenter'
 import * as commonPresenters from './commonPresenter'
+import * as workAppPresenters from './workAppPresenter'
 
 export {
 	// book
@@ -17,4 +18,5 @@ export {
 	userPresenters,
 	orderPresenters,
 	commonPresenters,
+	workAppPresenters,
 }

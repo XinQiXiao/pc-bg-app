@@ -41,6 +41,9 @@ import { ReactPage, LessPage, } from './demo'
 // book
 import { BookCategoryPage, BookInfoPage, } from './book'
 
+// workApp
+import { EmployeesPage } from './workApp'
+
 // login
 import { LoginPage } from './login'
 
@@ -72,6 +75,8 @@ export {
 	OrderDetailsPage,
 	// book
 	BookCategoryPage, BookInfoPage,
+	// workApp
+	EmployeesPage,
 	// Demo
 	// Error
 	ErrorPage,
