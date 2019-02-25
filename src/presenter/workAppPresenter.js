@@ -39,8 +39,27 @@ async function fetchEmployeeCreate({body}){
 		throw e
 	}
 }
+// 修改员工
+async function fetchEmployeeModify({body}){
+	try{
+		let curOption = {
+			url: 'auth/modifyEmployee',
+			isMock: false,
+			method: 'POST',
+			body,
+			data: {
+				isShowLoading: false,
+			}
+		}
+		const ret = await requestRemoteData({options: curOption})
+		return ret
+	}catch(e){
+		throw e
+	}
+}
 
 export {
 	fetchEmployeesAll,
 	fetchEmployeeCreate,
+	fetchEmployeeModify,
 }

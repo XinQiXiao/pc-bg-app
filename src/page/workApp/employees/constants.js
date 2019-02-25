@@ -3,14 +3,23 @@
  */
 import moment from 'moment'
 
-const employeeStatus = {
-	'0': '冻结',
-	'1': '激活',
-	'10': '待激活',
-}
-const employeeCity = {
-	'1': '北京',
-	'2': '上海',
+const employeeStatus = [
+	{id: 0, name: '冻结'},
+	{id: 1, name: '激活'},
+	{id: 10, name: '待激活'},
+]
+const employeeCity = [
+	{id: 1, name: '北京'},
+	{id: 2, name: '上海'}
+]
+
+function _getArrValue(key, source){
+	let resultName = ''
+	source.forEach((item, index)=>{
+		if(item.id === key)
+			resultName = item.name
+	})
+	return resultName
 }
 
 const conColumns = [
@@ -49,16 +58,18 @@ const conColumns = [
 		title: '状态',
 		dataIndex: 'status',
 		width: 100,
-		render: (target)=> employeeStatus[target]
+		render: (target)=> _getArrValue(target, employeeStatus)
 	},
 	{
 		title: '所属城市',
 		dataIndex: 'city_id',
 		width: 120,
-		render: (target)=> employeeCity[target],
+		render: (target)=> _getArrValue(target, employeeCity),
 	},
 ]
 
 export {
-	conColumns
+	employeeStatus,
+	employeeCity,
+	conColumns,
 }
