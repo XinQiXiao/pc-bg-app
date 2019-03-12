@@ -133,6 +133,10 @@ const menuList = [
 			{
 				title: 'less',
 				key: '/admin/demo/less'
+			},
+			{
+				title: 'redux',
+				key: '/admin/demo/redux'
 			}
 		]
 	},

@@ -3,8 +3,10 @@
  */
 import { ReactPage } from './reactDemo'
 import { LessPage } from './lessDemo'
+import { ReduxPage } from './reduxDemo'
 
 export {
 	ReactPage,
 	LessPage,
+	ReduxPage,
 }

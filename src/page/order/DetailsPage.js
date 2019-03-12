@@ -2,7 +2,7 @@
  * create at 01/04/19
  */
 import React, { Component } from 'react'
-import { Card, message, } from 'antd'
+import { Card, message, Button, } from 'antd'
 import _ from 'lodash'
 
 // presenters
@@ -49,12 +49,12 @@ class DetailsPage extends Component{
 			const {position_list, area_list} = this.state.orderInfo
 			this.map = new window.BMap.Map('orderDetailMap')
 			// 设置地图中心点
-			// this.map.centerAndZoom('北京', 11)
+			this.map.centerAndZoom('北京', 11)
 			this._addMapControl()
-			this._drawBikeRoute({positionList: position_list})
-			this._drawServerArea({areaList: area_list})
+			// this._drawBikeRoute({positionList: position_list})
+			// this._drawServerArea({areaList: area_list})
 		}catch(e){
-			message.error(`绘制地图fail err=${e.message}`)
+			// message.error(`绘制地图fail err=${e.message}`)
 		}
 	}
 	// 添加控件
@@ -117,12 +117,36 @@ class DetailsPage extends Component{
 		}
 	}
 
+	_mapSearch = async()=>{
+		try{
+			let options = {
+				renderOptions: {
+					map: this.map
+				},
+				onSearchComplete: function(results){
+					console.log('status=>', local.getStatus)
+					console.log('results=>', results)
+				}
+			}
+			let local = new window.BMap.LocalSearch(this.map, {
+				...options,
+			})
+			local.search('天津市滨海新区万达广场')
+		}catch(e){
+			console.log(`e =>`, e)
+		}
+	}
+
 	render(){
 		const info = this.state.orderInfo || {}
 		return (
 			<div>
 				<Card>
 					<div id="orderDetailMap" className="order-detail-map"></div>
+					<div className="order-detail-items">
+						<div className="item-title">地图搜索</div>
+						<Button type="primary" onClick={this._mapSearch}>搜索</Button>
+					</div>
 					<div className="order-detail-items">
 						<div className="item-title">基础信息</div>
 						<ul className="detail-form">

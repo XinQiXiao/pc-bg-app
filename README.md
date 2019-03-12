@@ -83,6 +83,7 @@
   * echarts http://echarts.baidu.com
   * 百度地图开放平台 javaScript api http://lbsyun.baidu.com/index.php?title=jspopular
   * react-draft-wysiwyg https://github.com/jpuri/react-draft-wysiwyg
+  * redux 中文文档 https://www.redux.org.cn
 
 # 福利
   最近完成了一个基于 node express server api 项目
