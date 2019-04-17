@@ -137,7 +137,15 @@ const menuList = [
 			{
 				title: 'redux',
 				key: '/admin/demo/redux'
-			}
+			},
+			{
+				title: 'react-life-cycle',
+				key: '/admin/demo/lifeCycle'
+			},
+			{
+				title: 'react-context',
+				key: '/admin/demo/context'
+			},
 		]
 	},
 	{

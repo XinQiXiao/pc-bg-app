@@ -36,7 +36,7 @@ import { UserListPage } from './user'
 import { OrderDetailsPage, OrderListPage, } from './order'
 
 // Demo
-import { ReactPage, LessPage, ReduxPage, } from './demo'
+import { ReactPage, LessPage, ReduxPage, LifeCyclePage, ReactContextPage,} from './demo'
 
 // book
 import { BookCategoryPage, BookInfoPage, } from './book'
@@ -80,7 +80,7 @@ export {
 	// Demo
 	// Error
 	ErrorPage,
-	ReactPage, LessPage, ReduxPage,
+	ReactPage, LessPage, ReduxPage, LifeCyclePage, ReactContextPage,
 	//// login Router
 	// login
 	LoginPage,

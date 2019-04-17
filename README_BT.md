@@ -240,4 +240,6 @@
 				在 demo 目录增加 ReduxPage
 
 			t0.4.5.1
-				test git modify ssh
+				1.test git modify ssh
+				2.测试 react 生命周期
+				3. react context

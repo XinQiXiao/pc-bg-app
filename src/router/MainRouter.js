@@ -36,7 +36,7 @@ import {
 	// order
 	OrderDetailsPage, OrderListPage,
 	// Demo
-	ReactPage, LessPage, ReduxPage,
+	ReactPage, LessPage, ReduxPage, LifeCyclePage, ReactContextPage,
 	// book 
 	BookCategoryPage, BookInfoPage,
 	// workApp
@@ -99,6 +99,8 @@ class MainRouter extends Component{
 									<Route path="/admin/demo/react" component={ReactPage}/>
 									<Route path="/admin/demo/less" component={LessPage}/>
 									<Route path="/admin/demo/redux" component={ReduxPage}/>
+									<Route path="/admin/demo/lifeCycle" component={LifeCyclePage}/>
+									<Route path="/admin/demo/context" component={ReactContextPage}/>
 									{/* book */}
 									<Route path="/admin/book/category" component={BookCategoryPage}/>
 									<Route path="/admin/book/bookInfo" component={BookInfoPage}/>
